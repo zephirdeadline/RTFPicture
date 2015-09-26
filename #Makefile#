@@ -2,7 +2,7 @@
  
 CPPFLAGS=
 CC=clang
-CFLAGS=-lSDLmain -lSDL -lSDL_mixer -lSDL_ttf
+CFLAGS=-lSDLmain -lSDL 
 LDFLAGS=
 LDLIBS=
  
