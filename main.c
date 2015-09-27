@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	gtk_window_set_title(GTK_WINDOW(MainWindow), "RTFPicture");
 	gtk_window_resize(GTK_WINDOW(MainWindow), width, height);
 	gtk_window_resize(GTK_WINDOW(DataWindow), width/2, height);
-	gtk_button_resize(GKT_WIDGET(button), 50,20);
+	
 	gtk_window_move(GTK_WINDOW(DataWindow), 3*width, height);//redefinir une position universelle svp
 	gtk_container_add(GTK_CONTAINER(MainWindow), button);
 	gtk_widget_show_all(DataWindow);
