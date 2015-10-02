@@ -1,17 +1,23 @@
 //Super fichier .h de la B de D :P
 
+typedef struct CharacterInfo CharacterInfo;
 
 void ConfigFile(char oprion);
-void AddInfo(char *name, char *image, char *caracter);
-void ModifInfo();
-void RemoveInfo();
-
-typedef struct CharacterInfo CharacterInfo;
+CharacterInfo* AddInfo(CharacterInfo *c, char *name);
+void ModifInfo(CharacterInfo *c, char *name, char *newName);
+CharacterInfo* RemoveInfo(CharacterInfo *c, char *name);
+CharacterInfo* ArrayData();
+char* Concat(char *a, char *b);
+int CountList(CharacterInfo *c);
+int CounterData();
+void ShowList(CharacterInfo *c);
+CharacterInfo* ArrayRec(int size);
 struct CharacterInfo
 {
 	char *name;
 	char *image;
 	char *caracter;	
+	CharacterInfo *next;
 };
 
-CharacterInfo* ArrayInfo();
+

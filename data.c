@@ -1,8 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "data.h"
 
-
+/* ne sert a rien pour le moment
 int Convert(int a)
 {
 	int b;
@@ -43,27 +44,86 @@ int Convert(int a)
 		return b;
 	
 }
+*/
 
-void AddInfo(char *name, char *image, char *caracter)
+char* Concat(char *a, char *b)
 {
-	CharacterInfo new;
-	new.name = name;
-	new.caracter = caracter;
-	new.image = image;
-	ConfigFile('+');
-	//...
-	printf("Ajout effectué avec bonté!\n");
+	char c[50] = "";
+	/*
+	for(int i = 0; i<strlen(a)-1; i++)
+	{
+		c[i] = *(a+i);
+	}
+	for(int i = strlen(a)-1 ; i<strlen(b); i++)
+	{
+		c[i]=*(b+i);
+	}*/
+	strcat(c, a);
+	return strcat(c, b);
+	//strcat(c, b);
+	//printf("La concatenation donne: %s\n", c);
+	//return strcat(c, b);
+}
+
+
+CharacterInfo* AddInfo(CharacterInfo *c, char *name)
+{
+
+	CharacterInfo *new = malloc(sizeof(CharacterInfo)); //*temp = malloc(sizeof(CharacterInfo));
+	//temp = c;
+	new->next = c;
 	
+	//char *test = Concat(name, "-Caracter");
+	//printf("variable test %s\n\n", test);
+	new->name = name;
+	new->caracter ="Caracter"; //Concat(name, "-Caracter");//strcat(name, "Caracter");
+	new->image = "Image";//Concat(name, "-Image");//strcat(name, "Image");
+	//printf("attibution: %s\n", new->image);
+	ConfigFile('+');
+	FILE *file = NULL;
+	file = fopen("RTFP.data", "r+");
+	if(file != NULL)
+	{
+		fseek(file, 0, SEEK_END);
+		fputs(name, file);
+		fputc('\n', file);
+
+		fclose(file);
+	}	
+	//...
+	printf("Ajout effectué avec bonté! %s\n", new->image);
+	return new;
 }
 
-void ModifInfo()
-{
-
+void ModifInfo(CharacterInfo *c, char *name, char *newName){
+	while(c->name != name)
+	{
+			c = c->next;
+	}
+	c->name = newName;
 }
 
-void RemoveInfo()
-{
+CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
+{ //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
+	CharacterInfo *a = c;
 	ConfigFile('-');
+	if(c->name == name)
+	{
+		CharacterInfo *b = c;
+		c = c->next;
+		free(b);
+		return c;
+	}
+	else
+	{
+		while(c->next->name != name)
+		{
+			c = c->next;
+		}
+		c->next = c->next->next;
+		free(c->next);
+		return a;
+	}
 }
 
 void ConfigFile(char option)
@@ -91,6 +151,17 @@ void ConfigFile(char option)
 	}
 }
 
+int CountList(CharacterInfo *c)
+{
+	int nb = 0;
+	while(c != NULL)
+	{
+		nb++;
+		c = c->next;
+	}
+	return nb;
+}
+
 int CounterData()
 {
 	int a = 0;
@@ -100,13 +171,69 @@ int CounterData()
 	{
 		fscanf(file, "%d", &a);
 	}
-	return a;
 	fclose(file);
+
+	return a;
 
 }
 
-CharacterInfo* ArrayData(CharacterInfo *C)
+void ShowList(CharacterInfo *c)
 {
+	int nb = 1;
+	do
+	{
+		printf(" nb %d s'appelle %s", nb, c->name);
+		c = c->next;
+		nb++;
+	}while(c != NULL);
+
+}
+
+CharacterInfo* ArrayData()
+{
+	
+
+	CharacterInfo *temp = malloc(sizeof(CharacterInfo));
+	int size = CounterData();
+	if(size != 0)
+	{
+		FILE *file = NULL;
+		file = fopen("RTFP.data", "r");
+		if(file != NULL)
+		{
+			//while(fgetc(file) != '\n'){}
+
+			CharacterInfo *a = malloc(sizeof(CharacterInfo));
+			temp = a;
+			a->name = "b\n";
+			for(int i = 1; i<size; i++)
+			{
+				CharacterInfo *c = malloc(sizeof(CharacterInfo));
+				if(c != NULL)
+				{						
+					char t[50] = "";
+					fgets(t, 100, file) ;
+					c->name = t;
+					//fscanf(file, "%s", c->name);
+					printf("name: %s\n", c->name);
+					c->next = NULL;
+					c->caracter = NULL;
+					c->image = NULL;
+					a->next = c;
+					a = c;
+				}
+			}
+			fclose(file);
+		}
+	}
+	else
+	{
+		temp = NULL;
+	}
+
+	return temp;
+
+/*
 	CharacterInfo *ArrayInfo = malloc(CounterData() * sizeof(CharacterInfo));
 	if(ArrayInfo != NULL)
 	{
@@ -118,5 +245,22 @@ CharacterInfo* ArrayData(CharacterInfo *C)
 		printf("Echec allocation");
 		 return NULL;
 	}
-	free(ArrayInfo);
+	free(ArrayInfo);*/
+	
+}
+
+CharacterInfo* ArrayRec(int size)
+{
+	if(size == 0)
+		return NULL;
+	else{
+		CharacterInfo *new = malloc(sizeof(CharacterInfo));
+		FILE *file = fopen("RTFP.data", "r");
+		char chaine[100] = "";
+		for(int i = CounterData(); i>size; i--)
+			fgets(chaine, 100, file);
+		new->name = chaine;
+		new->next = ArrayRec(size-1);
+		return new;
+		}
 }
