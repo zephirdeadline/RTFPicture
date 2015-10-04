@@ -258,7 +258,9 @@ CharacterInfo* ArrayRec(int size)
 		FILE *file = fopen("RTFP.data", "r");
 		char chaine[100] = "";
 		for(int i = CounterData(); i>size; i--)
+		{	
 			fgets(chaine, 100, file);
+		}
 		new->name = chaine;
 		new->next = ArrayRec(size-1);
 		return new;

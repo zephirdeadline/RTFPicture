@@ -10,7 +10,7 @@ int main()
 	//c = AddInfo(c, "Kris");
 	//ModifInfo(c, "b", "hihi");
 	printf("Il y a %d elements\n", CountList(c));
-	c = RemoveInfo(c, "Anais");
+	//c = RemoveInfo(c, "Anais");
 	//printf("Ily a %s elements\n", c->next->name);
 
 	ShowList(c);
