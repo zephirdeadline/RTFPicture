@@ -11,6 +11,6 @@ all:
 	$(CC) $(CFLAGS) data.c testData.c -o testData
  
 clean:
-	rm -f *~ *.o
+	rm -f *~ *.o .*.swp
  
 # END
