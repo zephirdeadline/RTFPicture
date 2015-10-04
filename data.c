@@ -3,6 +3,12 @@
 #include <string.h>
 #include "data.h"
 
+
+
+/*--------Converti une valeur ascii en int----------
+---------------------De 0 a 9--------------------*/
+
+
 /* ne sert a rien pour le moment
 int Convert(int a)
 {
@@ -46,6 +52,11 @@ int Convert(int a)
 }
 */
 
+
+/*------------------Concatenation-----------------
+-------------------------------------------------*/
+
+
 char* Concat(char *a, char *b)
 {
 	char c[50] = "";
@@ -64,6 +75,12 @@ char* Concat(char *a, char *b)
 	//printf("La concatenation donne: %s\n", c);
 	//return strcat(c, b);
 }
+
+
+/*--------Ajout d'un element au chargement---------
+-------------------------------------------------*/
+
+
 CharacterInfo* AddInfoStart(CharacterInfo *c, char *name)
 {
 
@@ -82,6 +99,10 @@ CharacterInfo* AddInfoStart(CharacterInfo *c, char *name)
 	printf("Ajout effectué avec bonté! %s\n", new->image);
 	return new;
 }
+
+
+/*----------------Ajout d'un element---------------
+-------------------------------------------------*/
 
 
 CharacterInfo* AddInfo(CharacterInfo *c, char *name)
@@ -114,6 +135,10 @@ CharacterInfo* AddInfo(CharacterInfo *c, char *name)
 }
 
 
+/*----------Modification d'un element-------------
+-------------------------------------------------*/
+
+
 void ModifInfo(CharacterInfo *c, char *name, char *newName){
 	while(c->name != name)
 	{
@@ -121,6 +146,9 @@ void ModifInfo(CharacterInfo *c, char *name, char *newName){
 	}
 	c->name = newName;
 }
+
+/*----------Suppression d'un element---------------
+-------------------------------------------------*/
 
 CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 { //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
@@ -145,6 +173,10 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 		return a;
 	}
 }
+
+
+/*-----------Modification fichier config-----------
+-------------------------------------------------*/
 
 
 void ConfigFile(char option)
@@ -174,6 +206,9 @@ void ConfigFile(char option)
 	}
 }
 
+/*----Compte le nombre d'element dans la liste-----
+-------------------------------------------------*/
+
 int CountList(CharacterInfo *c)
 {
 	int nb = 0;
@@ -184,6 +219,10 @@ int CountList(CharacterInfo *c)
 	}
 	return nb;
 }
+
+
+/*------Recupere le d'element dans le fichier-----
+-------------------------------------------------*/
 
 int CounterData()
 {
@@ -207,6 +246,9 @@ int CounterData()
 
 }
 
+/*--------Affiche les elements de la liste----------
+-------------------------------------------------*/
+
 void ShowList(CharacterInfo *c)
 {
 	int nb = 1;
@@ -220,7 +262,8 @@ void ShowList(CharacterInfo *c)
 
 }
 
-
+/*-----Chargement et creation de la liste---------
+----------------ITERATIF------------------------*/
 
 CharacterInfo* ArrayData()
 {
@@ -275,7 +318,8 @@ CharacterInfo* ArrayData()
 
 
 
-
+/*----- ANCIENNE VERSION creation de la liste------
+-------------------------------------------------*/
 
 /*
 CharacterInfo* ArrayData()
@@ -341,6 +385,12 @@ CharacterInfo* ArrayData()
 	free(ArrayInfo);*/
 	
 //} 
+
+
+
+/*---------Chargement et creation de la liste------------
+-----------------------RECURCIF------------------------*/
+
 
 CharacterInfo* ArrayRec(int size)
 {

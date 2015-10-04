@@ -21,8 +21,10 @@ int main(int argc, char **argv)
 	
 	gtk_window_move(GTK_WINDOW(DataWindow), 3*width, height);//redefinir une position universelle svp
 	gtk_container_add(GTK_CONTAINER(MainWindow), button);
+	
 	gtk_widget_show_all(DataWindow);
 	gtk_widget_show_all(MainWindow);
+
 	gtk_main();
 	return 0;
 }
