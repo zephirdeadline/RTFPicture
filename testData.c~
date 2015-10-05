@@ -3,76 +3,47 @@
 #include "data.h"
 
 
-CharacterInfo* ArrayData2()
-{
-	
-/*
-	CharacterInfo *temp = malloc(sizeof(CharacterInfo));
-	int size = CounterData();
-	if(size != 0)
-	{
-		FILE *file = NULL;
-		file = fopen("RTFP.data", "r");
-		if(file != NULL)
-		{
-			//while(fgetc(file) != '\n'){}
-			for(int i = 1; i<size; i++)
-			{*/
-				FILE *file = NULL;
-				file = fopen("RTFP.data", "r");
-				// CharacterInfo *c = malloc(sizeof(CharacterInfo));
-				CharacterInfo *c = NULL ;
-					for(int i =1; i<CounterData();i++)
-					{	
-						int pos = 0;
-						char temp ;		
-						char t[50] = "";
-						while((temp = fgetc(file)) != '\n')
-						{
-							t[pos]=temp;
-							pos++;
-						}
-						//fgets(t, 100, file) ;
-						//char *w = t;
-						printf("$$$$ %s   $$$$", t);
-						//scanf("%s", temp);
-
-						c = AddInfoStart(c, t);
-					}
-					
-					return c;
-
-				//}
-			/*}
-			fclose(file);
-		}
-	}
-
-	return temp;*/
-}
 
 
 
 int main()
 {
 	CharacterInfo *c = NULL;
-	c = ArrayData2();
-	//c = AddInfoStart(c, "Anais");
-	//c = AddInfoStart(c, "paul");
-	//c = AddInfoStart(c, "lucas");
+	c = ArrayData();
+	c = AddInfoStart(c, "Anais");
+	c = AddInfoStart(c, "paul");
+	c = AddInfoStart(c, "lucas");
 	//ModifInfo(c, "b", "hihi");
-	printf("Il y a %d elements\n", CountList(c));
+	//char *ca = Concat("sa", "lut");
+	//printf("Resultat de la concatenation: %s\n", ca);
+
+	//  c = RemoveInfo(c, "paul");
+	//printf("Ily a %s elements\n", c->next->name);
+
 	//c = RemoveInfo(c, "e");
 	//char *res = Concat("aaa", "bbb");
 	//printf("Ily a %s elements\n", res);
 
+
+	//ShowList(c);
+	// ShowList(c);
+	// c = AddInfoStart(c, "toto");
 	ShowList(c);
 	//ShowList(c);
-	printf(" \n   %s   \n", c->next->name);
+	//printf(" \n   %s   \n", c->next->name);
 	//ArrayData();
 	//AddInfo("ii", "oo", "oo");
 	//char*a;
 	//*a = '1';
 	//printf("egalité: %d\n", atoi(a));
+
+      // RemoveFile ("Lucas");
+
+
+
+
+
+
+
 	return 0;
 }

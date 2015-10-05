@@ -12,6 +12,7 @@ char* Concat(char *a, char *b);
 int CountList(CharacterInfo *c);
 int CounterData();
 void ShowList(CharacterInfo *c);
+	void RemoveFile (char *FileName);
 CharacterInfo* ArrayRec(int size);
 struct CharacterInfo
 {

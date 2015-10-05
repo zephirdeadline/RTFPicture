@@ -3,6 +3,12 @@
 #include <string.h>
 #include "data.h"
 
+
+
+/*--------Converti une valeur ascii en int----------
+---------------------De 0 a 9--------------------*/
+
+
 /* ne sert a rien pour le moment
 int Convert(int a)
 {
@@ -46,24 +52,41 @@ int Convert(int a)
 }
 */
 
+
+/*------------------Concatenation-----------------
+---------------------Fonctionnelle---------------*/
+
+
 char* Concat(char *a, char *b)
 {
-	char c[50] = "";
-	/*
-	for(int i = 0; i<strlen(a)-1; i++)
+	char *c = malloc(50*sizeof(char));
+	
+	for(int i = 0; i<strlen(a); i++)
 	{
-		c[i] = *(a+i);
+		*(c+i) = *(a+i);
+		//printf("%c %c\n", *(a+i), c[i]);
 	}
-	for(int i = strlen(a)-1 ; i<strlen(b); i++)
+	int i = 0;
+	int lena = strlen(a);
+	for(i; i<strlen(b); i++)
 	{
-		c[i]=*(b+i);
-	}*/
+		*(c+lena+i)=*(b+i);
+	}
+	*(c+lena+i) = '\0';
+	return c;
+	/*
 	strcat(c, a);
-	return strcat(c, b);
+	return strcat(c, b);*/
 	//strcat(c, b);
 	//printf("La concatenation donne: %s\n", c);
 	//return strcat(c, b);
 }
+
+
+/*--------Ajout d'un element au chargement---------
+-------------------------------------------------*/
+
+
 CharacterInfo* AddInfoStart(CharacterInfo *c, char *name)
 {
 
@@ -74,14 +97,18 @@ CharacterInfo* AddInfoStart(CharacterInfo *c, char *name)
 	//char *test = Concat(name, "-Caracter");
 	//printf("variable test %s\n\n", test);
 	new->name = name;
-	new->caracter ="Caracter"; //Concat(name, "-Caracter");//strcat(name, "Caracter");
-	new->image = "Image";//Concat(name, "-Image");//strcat(name, "Image");
+	new->caracter = Concat(name, "-Caracter"); //Concat(name, "-Caracter");//strcat(name, "Caracter");
+	new->image = Concat(name, "-Image");//Concat(name, "-Image");//strcat(name, "Image");
 	//printf("attibution: %s\n", new->image);
 	
 	
 	printf("Ajout effectué avec bonté! %s\n", new->image);
 	return new;
 }
+
+
+/*----------------Ajout d'un element---------------
+-------------------------------------------------*/
 
 
 CharacterInfo* AddInfo(CharacterInfo *c, char *name)
@@ -93,9 +120,9 @@ CharacterInfo* AddInfo(CharacterInfo *c, char *name)
 	
 	//char *test = Concat(name, "-Caracter");
 	//printf("variable test %s\n\n", test);
-	new->name = name;
-	new->caracter ="Caracter"; //Concat(name, "-Caracter");//strcat(name, "Caracter");
-	new->image = "Image";//Concat(name, "-Image");//strcat(name, "Image");
+	new->name = name; //Concat(name, "");
+	new->caracter = Concat(name, "-Caracter");
+	new->image = Concat(name, "-Image");//Concat(name, "-Image");//strcat(name, "Image");
 	//printf("attibution: %s\n", new->image);
 	ConfigFile('+');
 	FILE *file = NULL;
@@ -114,21 +141,36 @@ CharacterInfo* AddInfo(CharacterInfo *c, char *name)
 }
 
 
+/*----------Modification d'un element-------------
+-------------------------------------------------*/
+
+
 void ModifInfo(CharacterInfo *c, char *name, char *newName){
 	while(c->name != name)
 	{
 			c = c->next;
 	}
 	c->name = newName;
+	c->image = "-Image";
+	c->caracter = "-Caracter";
 }
+
+/*----------Suppression d'un element---------------
+-------------------------------------------------*/
 
 CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 { //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
 	CharacterInfo *a = c;
+
+	RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
+
+
 	
-	ConfigFile('-');
+	 ConfigFile('-');
+
 	if(c->name == name)
 	{
+
 		CharacterInfo *b = c;
 		c = c->next;
 		free(b);
@@ -136,6 +178,7 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 	}
 	else
 	{
+
 		while(c->next->name != name)
 		{
 			c = c->next;
@@ -144,7 +187,50 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 		free(c->next);
 		return a;
 	}
+
+
+
+
 }
+
+
+
+/*--Suppression des fichiers d'un element suprimé--
+-------------------------------------------------*/
+
+void RemoveFile (char *FileName)
+{
+
+// supprime tous les éléments d'un fichier dans le dossier de sauvgarde => "SaveData"
+
+// Si l'élement n'existe pas, la fonction ne créer aucune erreur.
+
+
+	char *string = Concat("DataSave/",Concat(FileName, "-Caracter"));
+	remove(string);
+
+	string = Concat("DataSave/",Concat(FileName, "-Image"));
+	remove(string);
+
+
+
+   printf("\n $$$$ L'element %s a bien été suprimé ainsi que tous ses fichiers associés $$$$   \n",FileName);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/*-----------Modification fichier config-----------
+-------------------------------------------------*/
 
 
 void ConfigFile(char option)
@@ -174,6 +260,9 @@ void ConfigFile(char option)
 	}
 }
 
+/*----Compte le nombre d'element dans la liste-----
+-------------------------------------------------*/
+
 int CountList(CharacterInfo *c)
 {
 	int nb = 0;
@@ -184,6 +273,10 @@ int CountList(CharacterInfo *c)
 	}
 	return nb;
 }
+
+
+/*------Recupere le d'element dans le fichier-----
+-------------------------------------------------*/
 
 int CounterData()
 {
@@ -207,20 +300,24 @@ int CounterData()
 
 }
 
+/*--------Affiche les elements de la liste----------
+-------------------------------------------------*/
+
 void ShowList(CharacterInfo *c)
 {
 	int nb = 1;
 
 	do
 	{
-		printf("Le nb %d s'appelle %s\n", nb, c->name);
+		printf("Le nb %d s'appelle %s et Caracter = %s et Image = %s\n", nb, c->name, c->caracter, c->image);
 		c = c->next;
 		nb++;
 	}while(c != NULL);
 
 }
 
-
+/*-----Chargement et creation de la liste---------
+----------------ITERATIF------------------------*/
 
 CharacterInfo* ArrayData()
 {
@@ -241,19 +338,19 @@ CharacterInfo* ArrayData()
 				file = fopen("RTFP.data", "r");
 				// CharacterInfo *c = malloc(sizeof(CharacterInfo));
 				CharacterInfo *c = NULL ;
-					for(int i =1; i<CounterData();i++)
+					for(int i =1; i<=CounterData();i++)
 					{	
 						int pos = 0;
 						char temp ;		
-						char t[50] = "";
+						char *t = malloc(50*sizeof(char));
 						while((temp = fgetc(file)) != '\n')
 						{
-							t[pos]=temp;
+							*(t+pos)=temp;/////////////////////////////////////////A modifier!!!!!!!!!!!!!!!!!!!!!!!
 							pos++;
 						}
 						//fgets(t, 100, file) ;
 						//char *w = t;
-						printf("$$$$ %s   $$$$", t);
+						//printf("$$$$ %s   $$$$", t);
 						//scanf("%s", temp);
 
 						c = AddInfoStart(c, t);
@@ -262,7 +359,7 @@ CharacterInfo* ArrayData()
 
 					}
 					
-					return a;
+					return c;
 
 				//}
 			/*}
@@ -275,7 +372,8 @@ CharacterInfo* ArrayData()
 
 
 
-
+/*----- ANCIENNE VERSION creation de la liste------
+-------------------------------------------------*/
 
 /*
 CharacterInfo* ArrayData()
@@ -342,6 +440,12 @@ CharacterInfo* ArrayData()
 	
 //} 
 
+
+
+/*---------Chargement et creation de la liste------------
+-----------------------RECURCIF------------------------*/
+
+
 CharacterInfo* ArrayRec(int size)
 {
 	if(size == 0)
@@ -351,8 +455,14 @@ CharacterInfo* ArrayRec(int size)
 		FILE *file = fopen("RTFP.data", "r");
 		char chaine[100] = "";
 		for(int i = CounterData(); i>size; i--)
+		{	
 			fgets(chaine, 100, file);
-		new->name = chaine;   
+
+		}
+		new->name = chaine;
+
+   
+
 		new->next = ArrayRec(size-1);
 		return new;
 		}

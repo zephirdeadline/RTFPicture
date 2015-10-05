@@ -12,12 +12,12 @@ int main()
 	c = ArrayData();
 	c = AddInfoStart(c, "Anais");
 	c = AddInfoStart(c, "paul");
-	//c = AddInfoStart(c, "lucas");
+	c = AddInfoStart(c, "lucas");
 	//ModifInfo(c, "b", "hihi");
 	//char *ca = Concat("sa", "lut");
 	//printf("Resultat de la concatenation: %s\n", ca);
 
-	//c = RemoveInfo(c, "Anais");
+	  c = RemoveInfo(c, "paul");
 	//printf("Ily a %s elements\n", c->next->name);
 
 	//c = RemoveInfo(c, "e");
@@ -25,9 +25,9 @@ int main()
 	//printf("Ily a %s elements\n", res);
 
 
-	ShowList(c);
-	ShowList(c);
-	c = AddInfoStart(c, "toto");
+	//ShowList(c);
+	// ShowList(c);
+	// c = AddInfoStart(c, "toto");
 	ShowList(c);
 	//ShowList(c);
 	//printf(" \n   %s   \n", c->next->name);
@@ -36,5 +36,14 @@ int main()
 	//char*a;
 	//*a = '1';
 	//printf("egalité: %d\n", atoi(a));
+
+      // RemoveFile ("Lucas");
+
+
+
+
+
+
+
 	return 0;
 }
