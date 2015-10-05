@@ -26,6 +26,9 @@ int main()
 
 
 	ShowList(c);
+	ShowList(c);
+	c = AddInfoStart(c, "toto");
+	ShowList(c);
 	//ShowList(c);
 	//printf(" \n   %s   \n", c->next->name);
 	//ArrayData();
