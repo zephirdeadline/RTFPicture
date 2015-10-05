@@ -10,11 +10,12 @@ int main()
 {
 	CharacterInfo *c = NULL;
 	c = ArrayData();
-	//c = AddInfoStart(c, "Anais");
-	//c = AddInfoStart(c, "paul");
+	c = AddInfoStart(c, "Anais");
+	c = AddInfoStart(c, "paul");
 	//c = AddInfoStart(c, "lucas");
 	//ModifInfo(c, "b", "hihi");
-	printf("Il y a %d elements\n", CountList(c));
+	//char *ca = Concat("sa", "lut");
+	//printf("Resultat de la concatenation: %s\n", ca);
 
 	//c = RemoveInfo(c, "Anais");
 	//printf("Ily a %s elements\n", c->next->name);
@@ -26,7 +27,7 @@ int main()
 
 	ShowList(c);
 	//ShowList(c);
-	printf(" \n   %s   \n", c->next->name);
+	//printf(" \n   %s   \n", c->next->name);
 	//ArrayData();
 	//AddInfo("ii", "oo", "oo");
 	//char*a;

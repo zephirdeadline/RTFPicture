@@ -54,23 +54,29 @@ int Convert(int a)
 
 
 /*------------------Concatenation-----------------
--------------------------------------------------*/
+---------------------Fonctionnelle---------------*/
 
 
 char* Concat(char *a, char *b)
 {
-	char c[50] = "";
-	/*
-	for(int i = 0; i<strlen(a)-1; i++)
+	char *c = malloc(50*sizeof(char));
+	
+	for(int i = 0; i<strlen(a); i++)
 	{
-		c[i] = *(a+i);
+		*(c+i) = *(a+i);
+		//printf("%c %c\n", *(a+i), c[i]);
 	}
-	for(int i = strlen(a)-1 ; i<strlen(b); i++)
+	int i = 0;
+	int lena = strlen(a);
+	for(i; i<strlen(b); i++)
 	{
-		c[i]=*(b+i);
-	}*/
+		*(c+lena+i)=*(b+i);
+	}
+	*(c+lena+i) = '\0';
+	return c;
+	/*
 	strcat(c, a);
-	return strcat(c, b);
+	return strcat(c, b);*/
 	//strcat(c, b);
 	//printf("La concatenation donne: %s\n", c);
 	//return strcat(c, b);
@@ -91,8 +97,8 @@ CharacterInfo* AddInfoStart(CharacterInfo *c, char *name)
 	//char *test = Concat(name, "-Caracter");
 	//printf("variable test %s\n\n", test);
 	new->name = name;
-	new->caracter ="Caracter"; //Concat(name, "-Caracter");//strcat(name, "Caracter");
-	new->image = "Image";//Concat(name, "-Image");//strcat(name, "Image");
+	new->caracter = Concat(name, "-Caracter"); //Concat(name, "-Caracter");//strcat(name, "Caracter");
+	new->image = Concat(name, "-Image");//Concat(name, "-Image");//strcat(name, "Image");
 	//printf("attibution: %s\n", new->image);
 	
 	
@@ -114,9 +120,9 @@ CharacterInfo* AddInfo(CharacterInfo *c, char *name)
 	
 	//char *test = Concat(name, "-Caracter");
 	//printf("variable test %s\n\n", test);
-	new->name = name;
-	new->caracter ="Caracter"; //Concat(name, "-Caracter");//strcat(name, "Caracter");
-	new->image = "Image";//Concat(name, "-Image");//strcat(name, "Image");
+	new->name = name; //Concat(name, "");
+	new->caracter = Concat(name, "-Caracter");
+	new->image = Concat(name, "-Image");//Concat(name, "-Image");//strcat(name, "Image");
 	//printf("attibution: %s\n", new->image);
 	ConfigFile('+');
 	FILE *file = NULL;
@@ -145,6 +151,8 @@ void ModifInfo(CharacterInfo *c, char *name, char *newName){
 			c = c->next;
 	}
 	c->name = newName;
+	c->image = "-Image";
+	c->caracter = "-Caracter";
 }
 
 /*----------Suppression d'un element---------------
@@ -255,7 +263,7 @@ void ShowList(CharacterInfo *c)
 
 	do
 	{
-		printf("Le nb %d s'appelle %s\n", nb, c->name);
+		printf("Le nb %d s'appelle %s et Caracter = %s et Image = %s\n", nb, c->name, c->caracter, c->image);
 		c = c->next;
 		nb++;
 	}while(c != NULL);
@@ -288,15 +296,15 @@ CharacterInfo* ArrayData()
 					{	
 						int pos = 0;
 						char temp ;		
-						char t[50] = "";
+						char *t = malloc(50*sizeof(char));
 						while((temp = fgetc(file)) != '\n')
 						{
-							t[pos]=temp;
+							*(t+pos)=temp;/////////////////////////////////////////A modifier!!!!!!!!!!!!!!!!!!!!!!!
 							pos++;
 						}
 						//fgets(t, 100, file) ;
 						//char *w = t;
-						printf("$$$$ %s   $$$$", t);
+						//printf("$$$$ %s   $$$$", t);
 						//scanf("%s", temp);
 
 						c = AddInfoStart(c, t);
