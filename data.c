@@ -198,10 +198,16 @@ void WriteFile(CharacterInfo *c)
 CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 { //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
 	CharacterInfo *a = c;
+
+	RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
+
+
 	
-	ConfigFile('-');
+	 ConfigFile('-');
+
 	if(c->name == name)
 	{
+
 		CharacterInfo *b = c;
 		c = c->next;
 		//WriteFile(c);
@@ -210,8 +216,10 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 	}
 	else
 	{
+
 		return NULL;
 	/*	while(c->next->name != name)
+
 		{
 			c = c->next;
 		}
@@ -219,7 +227,46 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 		free(c->next);
 		return a;*/
 	}
+
+
+
+
 }
+
+
+
+/*--Suppression des fichiers d'un element suprimé--
+-------------------------------------------------*/
+
+void RemoveFile (char *FileName)
+{
+
+// supprime tous les éléments d'un fichier dans le dossier de sauvgarde => "SaveData"
+
+// Si l'élement n'existe pas, la fonction ne créer aucune erreur.
+
+
+	char *string = Concat("DataSave/",Concat(FileName, "-Caracter"));
+	remove(string);
+
+	string = Concat("DataSave/",Concat(FileName, "-Image"));
+	remove(string);
+
+
+
+   printf("\n $$$$ L'element %s a bien été suprimé ainsi que tous ses fichiers associés $$$$   \n",FileName);
+
+
+
+}
+
+
+
+
+
+
+
+
 
 
 /*-----------Modification fichier config-----------
