@@ -27,7 +27,9 @@ int main()
 	//printf("Ily a %s elements\n", res);
 	//WriteFile(c);
 	//ShowList(c);
-	RemoveInfo(c, "PPPPP");
+	ShowList(c);
+	c = RemoveInfo(c, "Albert\n");
+	c = RemoveInfo(c, "PPPPP\n");
 	//WriteFile(c);
 
 

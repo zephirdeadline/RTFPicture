@@ -199,15 +199,15 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 { //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
 	CharacterInfo *a = c;
 
-	RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
+	//RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
 
 
 	
-	 ConfigFile('-');
+	 //ConfigFile('-');
 
 	if(c->name == name)
 	{
-
+		printf("element supprimé");
 		CharacterInfo *b = c;
 		c = c->next;
 		//WriteFile(c);
@@ -216,8 +216,8 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 	}
 	else
 	{
-
-		return NULL;
+		printf("element non trouvé");
+		return c;
 	/*	while(c->next->name != name)
 
 		{
@@ -346,14 +346,15 @@ int CounterData()
 void ShowList(CharacterInfo *c)
 {
 	int nb = 1;
-
+	if(CountList != 0)
+	{
 	do
 	{
 		printf("Le nb %d s'appelle %s et Caracter = %s et Image = %s\n", nb, c->name, c->caracter, c->image);
 		c = c->next;
 		nb++;
 	}while(c != NULL);
-
+	}
 }
 
 /*-----Chargement et creation de la liste---------
@@ -385,7 +386,7 @@ CharacterInfo* ArrayData()
 						char *t = malloc(50*sizeof(char));
 						while((temp = fgetc(file)) != '\n')
 						{
-							*(t+pos)=temp;/////////////////////////////////////////A modifier!!!!!!!!!!!!!!!!!!!!!!!
+							*(t+pos)=temp;
 							pos++;
 						}
 						//fgets(t, 100, file) ;
