@@ -145,14 +145,51 @@ CharacterInfo* AddInfo(CharacterInfo *c, char *name)
 -------------------------------------------------*/
 
 
-void ModifInfo(CharacterInfo *c, char *name, char *newName){
+void ModifInfo(CharacterInfo *c, char *name, char *newName)
+{
 	while(c->name != name)
 	{
 			c = c->next;
 	}
 	c->name = newName;
-	c->image = "-Image";
-	c->caracter = "-Caracter";
+	c->image = Concat(name, "-Image");
+	c->caracter = Concat(name,"-Caracter");
+	FILE *file = NULL;
+	file = fopen("RTFP.data", "r+");
+	if(file != NULL)
+	{
+		printf("");	
+	}	
+	else
+	{
+		printf("impossible d'ouvrir le fichier RTFP.data");
+	}
+}
+
+
+/*---Ecriture du fichier RTFP.data a partir le la liste---
+---------------------------------------------------------*/
+void WriteFile(CharacterInfo *c)
+{
+	FILE *file = NULL;
+	file = fopen("RTFP.data", "w+");
+	if(file != NULL)
+	{
+		do
+		{
+			char *a;
+			fgets(a, 100, file);
+			fseek(file, 0, SEEK_END);
+			fprintf(file, "%s\n", c->name);
+			c = c->next;
+		}while(c != NULL);
+		printf("fichier ecrit avec succes, merci!\n");
+	}
+	else
+	{
+		printf("impossible d'ecrit le fichier\n");
+	}
+	
 }
 
 /*----------Suppression d'un element---------------
@@ -167,18 +204,20 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 	{
 		CharacterInfo *b = c;
 		c = c->next;
+		//WriteFile(c);
 		free(b);
 		return c;
 	}
 	else
 	{
-		while(c->next->name != name)
+		return NULL;
+	/*	while(c->next->name != name)
 		{
 			c = c->next;
 		}
 		c->next = c->next->next;
 		free(c->next);
-		return a;
+		return a;*/
 	}
 }
 
@@ -229,7 +268,7 @@ int CountList(CharacterInfo *c)
 }
 
 
-/*------Recupere le d'element dans le fichier-----
+/*----Recupere le nb d'element dans le fichier-----
 -------------------------------------------------*/
 
 int CounterData()

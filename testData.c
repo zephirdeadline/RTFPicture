@@ -10,8 +10,8 @@ int main()
 {
 	CharacterInfo *c = NULL;
 	c = ArrayData();
-	c = AddInfoStart(c, "Anais");
-	c = AddInfoStart(c, "paul");
+	//c = AddInfo(c, "TTTTT");
+	//c = AddInfo(c, "PPPPP");
 	//c = AddInfoStart(c, "lucas");
 	//ModifInfo(c, "b", "hihi");
 	//char *ca = Concat("sa", "lut");
@@ -23,12 +23,15 @@ int main()
 	//c = RemoveInfo(c, "e");
 	//char *res = Concat("aaa", "bbb");
 	//printf("Ily a %s elements\n", res);
+	//WriteFile(c);
 
-
+	//ShowList(c);
+	RemoveInfo(c, "PPPPP");
+	//WriteFile(c);
 	ShowList(c);
-	ShowList(c);
-	c = AddInfoStart(c, "toto");
-	ShowList(c);
+	//ShowList(c);
+	//c = AddInfoStart(c, "toto");
+	//ShowList(c);
 	//ShowList(c);
 	//printf(" \n   %s   \n", c->next->name);
 	//ArrayData();
