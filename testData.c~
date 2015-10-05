@@ -27,7 +27,13 @@ int main()
 	//printf("Ily a %s elements\n", res);
 	//WriteFile(c);
 	//ShowList(c);
-	RemoveInfo(c, "PPPPP");
+<<<<<<< HEAD
+	c = RemoveInfo(c, "PPPPP");
+=======
+	ShowList(c);
+	c = RemoveInfo(c, "Albert\n");
+	c = RemoveInfo(c, "PPPPP\n");
+>>>>>>> 90e86991c78c6e72d87beb7e5190f56ff5f2f48b
 	//WriteFile(c);
 
 

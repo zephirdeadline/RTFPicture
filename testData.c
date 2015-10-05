@@ -26,8 +26,11 @@ int main()
 	//char *res = Concat("aaa", "bbb");
 	//printf("Ily a %s elements\n", res);
 	//WriteFile(c);
-	//ShowList(c);
-	c = RemoveInfo(c, "PPPPP");
+	//ShowList(c)
+	ShowList(c);
+	c = RemoveInfo(c, "Albert\n");
+	c = RemoveInfo(c, "PPPPP\n");
+
 	//WriteFile(c);
 
 
