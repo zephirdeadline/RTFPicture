@@ -2,20 +2,24 @@
 
 typedef struct CharacterInfo CharacterInfo;
 
-int CompareChar(char *a, char *b);
-void WriteFile(CharacterInfo *c);
-CharacterInfo* AddInfoStart(CharacterInfo *c, char *name);
-void ConfigFile(char oprion);
-CharacterInfo* AddInfo(CharacterInfo *c, char *name);
+void ShowList(CharacterInfo *c);
+void RemoveFile (char *FileName);
 void ModifInfo(CharacterInfo *c, char *name, char *newName);
-CharacterInfo* RemoveInfo(CharacterInfo *c, char *name);
-CharacterInfo* ArrayData();
-char* Concat(char *a, char *b);
+void WriteFile(CharacterInfo *c);
+void ConfigFile(char oprion);
+
 int CountList(CharacterInfo *c);
 int CounterData();
-void ShowList(CharacterInfo *c);
-	void RemoveFile (char *FileName);
+int CompareChar(char *a, char *b);
+
+char* Concat(char *a, char *b);
+
+CharacterInfo* AddInfoStart(CharacterInfo *c, char *name);
+CharacterInfo* AddInfo(CharacterInfo *c, char *name);
+CharacterInfo* RemoveInfo(CharacterInfo *c, char *name);
+CharacterInfo* ArrayData();
 CharacterInfo* ArrayRec(int size);
+
 struct CharacterInfo
 {
 	char *name;
