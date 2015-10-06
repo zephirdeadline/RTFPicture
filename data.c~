@@ -208,7 +208,7 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 
 	if(strcmp(name1,c->name)==0)
 	{
-		printf("element supprimé\n");
+		// printf("element supprimé\n");
 		CharacterInfo *b = c;
 		c = c->next;
 		//WriteFile(c);
@@ -224,9 +224,18 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 		{
 			a = a->next;
 		}
-		a->next = a->next->next;
+
+		if (strcmp(name1,a->next->name)==0)
+		{
+			a->next = a->next->next;
+			printf ("element suprimé");
+		}
+		else
+		{
+			printf ("element introuvable");
+		}
 		//free(a->next);
-	printf("element supprimé en milieux de liste\n");
+	// printf("element supprimé en milieux de liste\n");
 		return c;
 	}
 

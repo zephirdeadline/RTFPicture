@@ -195,45 +195,7 @@ void WriteFile(CharacterInfo *c)
 /*----------Suppression d'un element---------------
 -------------------------------------------------*/
 
-CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
-{ //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
-	CharacterInfo *a = c;
 
-	//RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
-
-
-	
-	 //ConfigFile('-');
-
-
-	if(strcmp(name1,c->name)==0)
-	{
-		// printf("element supprimé\n");
-		CharacterInfo *b = c;
-		c = c->next;
-		//WriteFile(c);
-		free(b);
-		return c;
-	}
-	else
-	{
-		//printf("element non trouvé\n");
-		// return c;
-		while(strcmp(name1,a->next->name)!=0)
-
-		{
-			a = a->next;
-		}
-		a->next = a->next->next;
-		//free(a->next);
-	// printf("element supprimé en milieux de liste\n");
-		return c;
-	}
-
-
-
-
-}
 
 
 
