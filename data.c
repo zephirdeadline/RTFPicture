@@ -205,9 +205,10 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 	
 	 //ConfigFile('-');
 
-	if(c->name == name1)
+
+	if(strcmp(name1,c->name)==0)
 	{
-		printf("element supprimé\n");
+		// printf("element supprimé\n");
 		CharacterInfo *b = c;
 		c = c->next;
 		//WriteFile(c);
@@ -216,16 +217,17 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 	}
 	else
 	{
-		printf("element non trouvé\n");
-		return c;
-	/*	while(c->next->name != name)
+		//printf("element non trouvé\n");
+		// return c;
+		while(strcmp(name1,a->next->name)!=0)
 
 		{
-			c = c->next;
+			a = a->next;
 		}
-		c->next = c->next->next;
-		free(c->next);
-		return a;*/
+		a->next = a->next->next;
+		//free(a->next);
+	// printf("element supprimé en milieux de liste\n");
+		return c;
 	}
 
 
