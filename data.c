@@ -196,7 +196,64 @@ void WriteFile(CharacterInfo *c)
 -------------------------------------------------*/
 
 
+CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
+{ //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
+	CharacterInfo *a = c;
 
+	//RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
+
+
+	
+	 //ConfigFile('-');
+
+//	printf("recherche de : %s dans %s\n", name1, c->name);
+	if(CompareChar(c->name, name1))
+
+	{
+		// printf("element supprimé\n");
+		CharacterInfo *b = c;
+		c = c->next;
+		//WriteFile(c);
+		free(b);
+		return c;
+	}
+	else
+	{
+		// return c;
+		while(!CompareChar(a->next->name, name1))
+		{
+			a = a->next;
+			if(a->next == NULL)
+				return c; 
+		}
+		a->next = a->next->next;
+		//free(a->next);
+	// printf("element supprimé en milieux de liste\n");
+		return c;
+	}
+
+
+
+
+}
+
+
+
+/*-------------------------Comparaison de *char---------------------
+--------------------------------------------------------------------*/
+
+int CompareChar(char *a, char *b)
+{
+	int i = 0;
+	while(*(a+i) != '\0')
+	{
+		if(*(a+i) != *(b+i))
+			return 0;
+		i++;
+		
+	}
+	return 1;
+}
 
 
 /*--Suppression des fichiers d'un element suprimé--
@@ -309,7 +366,7 @@ int CounterData()
 
 void ShowList(CharacterInfo *c)
 {
-	CharacterInfo* a = c;
+	CharacterInfo *a = c;
 	int nb = 1;
 	if(CountList != 0)
 	{
