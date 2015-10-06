@@ -28,8 +28,10 @@ int main()
 	//WriteFile(c);
 	//ShowList(c);
 	ShowList(c);
-	c = RemoveInfo(c, "Albert\n");
-	c = RemoveInfo(c, "PPPPP\n");
+	printf("%s\n", c->name);
+	//printf("%s\n", c->next->next->name);
+	c = RemoveInfo(c, "Albert");
+	c = RemoveInfo(c, "Homer");
 	//WriteFile(c);
 
 

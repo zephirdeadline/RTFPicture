@@ -195,7 +195,7 @@ void WriteFile(CharacterInfo *c)
 /*----------Suppression d'un element---------------
 -------------------------------------------------*/
 
-CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
+CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 { //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
 	CharacterInfo *a = c;
 
@@ -205,9 +205,9 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 	
 	 //ConfigFile('-');
 
-	if(c->name == name)
+	if(c->name == name1)
 	{
-		printf("element supprimé");
+		printf("element supprimé\n");
 		CharacterInfo *b = c;
 		c = c->next;
 		//WriteFile(c);
@@ -216,7 +216,7 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 	}
 	else
 	{
-		printf("element non trouvé");
+		printf("element non trouvé\n");
 		return c;
 	/*	while(c->next->name != name)
 
