@@ -195,6 +195,7 @@ void WriteFile(CharacterInfo *c)
 /*----------Suppression d'un element---------------
 -------------------------------------------------*/
 
+
 CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 { //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
 	CharacterInfo *a = c;
