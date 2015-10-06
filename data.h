@@ -2,6 +2,7 @@
 
 typedef struct CharacterInfo CharacterInfo;
 
+int CompareChar(char *a, char *b);
 void WriteFile(CharacterInfo *c);
 CharacterInfo* AddInfoStart(CharacterInfo *c, char *name);
 void ConfigFile(char oprion);

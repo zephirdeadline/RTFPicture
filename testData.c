@@ -10,7 +10,7 @@ int main()
 {
 	CharacterInfo *c = NULL;
 	c = ArrayData();
-
+	//printf("%d\n%d\n", CompareChar("aa", "aa"), CompareChar("aab", "aa"));
 	//c = AddInfo(c, "TTTTT");
 	//c = AddInfo(c, "PPPPP");
 	//c = AddInfoStart(c, "lucas");
@@ -30,8 +30,9 @@ int main()
 	ShowList(c);
 	printf("%s\n", c->name);
 	//printf("%s\n", c->next->next->name);
-	c = RemoveInfo(c, "Albert");
-	c = RemoveInfo(c, "Homer");
+	char *a = "Lucette";
+	c = RemoveInfo(c, a);
+	c = RemoveInfo(c, "Sacha");
 	//WriteFile(c);
 
 
