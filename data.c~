@@ -196,8 +196,10 @@ void WriteFile(CharacterInfo *c)
 -------------------------------------------------*/
 
 
-<<<<<<< HEAD
-=======
+CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
+{ //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
+	CharacterInfo *a = c;
+
 	//RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
 
 
@@ -234,7 +236,6 @@ void WriteFile(CharacterInfo *c)
 
 
 }
->>>>>>> 5271806418a003259c7ac8a2a182899885a09990
 
 
 
