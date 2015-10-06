@@ -204,10 +204,12 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 
 	
 	 //ConfigFile('-');
+
 //	printf("recherche de : %s dans %s\n", name1, c->name);
 	if(CompareChar(c->name, name1))
+
 	{
-		printf("element supprimé\n");
+		// printf("element supprimé\n");
 		CharacterInfo *b = c;
 		c = c->next;
 		//WriteFile(c);
@@ -216,18 +218,17 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 	}
 	else
 	{
-		//printf("element non trouvé\n");
-		
-		while(!CompareChar(c->next->name, name1))
+		// return c;
+		while(!CompareChar(a->next->name, name1))
 		{
-			c = c->next;
+			a = a->next;
+			if(a->next == NULL)
+				return c; 
 		}
-		if(CompareChar(c->name, name1))
-		{
-			c->next = c->next->next;
-			free(c->next);
-		}
-		return a;
+		a->next = a->next->next;
+		//free(a->next);
+	// printf("element supprimé en milieux de liste\n");
+		return c;
 	}
 
 

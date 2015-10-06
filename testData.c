@@ -30,9 +30,8 @@ int main()
 	ShowList(c);
 	printf("%s\n", c->name);
 	//printf("%s\n", c->next->next->name);
-	char *a = "Lucette";
-	c = RemoveInfo(c, a);
-	c = RemoveInfo(c, "Sacha");
+	//c = RemoveInfo(c, a);
+	c = RemoveInfo(c, "Homer");
 	//WriteFile(c);
 
 
