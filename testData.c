@@ -31,7 +31,7 @@ int main()
 	printf("%s\n", c->name);
 	//printf("%s\n", c->next->next->name);
 	//c = RemoveInfo(c, a);
-	c = RemoveInfo(c, "Homer");
+	c = RemoveInfo(c, "Sacha");
 	//WriteFile(c);
 
 

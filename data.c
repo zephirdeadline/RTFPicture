@@ -199,12 +199,11 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 { //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
 	CharacterInfo *a = c;
 
-	//RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
+	 // supprime les fichiers de sauvgarde de l'élement dans la base de donné
 
 
 	
-	 //ConfigFile('-');
-
+	 
 //	printf("recherche de : %s dans %s\n", name1, c->name);
 	if(CompareChar(c->name, name1))
 
@@ -212,8 +211,10 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 		// printf("element supprimé\n");
 		CharacterInfo *b = c;
 		c = c->next;
-		//WriteFile(c);
+		WriteFile(c);
 		free(b);
+		ConfigFile('-');
+		RemoveFile (name1);
 		return c;
 	}
 	else
@@ -225,7 +226,11 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 			if(a->next == NULL)
 				return c; 
 		}
+		ConfigFile('-');
+		RemoveFile (name1);
+		
 		a->next = a->next->next;
+		WriteFile(c);	
 		//free(a->next);
 	// printf("element supprimé en milieux de liste\n");
 		return c;
