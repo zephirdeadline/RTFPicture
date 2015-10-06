@@ -10,25 +10,40 @@ int main()
 {
 	CharacterInfo *c = NULL;
 	c = ArrayData();
-	c = AddInfoStart(c, "Anais");
-	c = AddInfoStart(c, "paul");
-	c = AddInfoStart(c, "lucas");
+
+	//c = AddInfo(c, "TTTTT");
+	//c = AddInfo(c, "PPPPP");
+	//c = AddInfoStart(c, "lucas");
+
 	//ModifInfo(c, "b", "hihi");
 	//char *ca = Concat("sa", "lut");
 	//printf("Resultat de la concatenation: %s\n", ca);
 
-	//  c = RemoveInfo(c, "paul");
+
 	//printf("Ily a %s elements\n", c->next->name);
 
 	//c = RemoveInfo(c, "e");
 	//char *res = Concat("aaa", "bbb");
 	//printf("Ily a %s elements\n", res);
+	//WriteFile(c);
+	//ShowList(c);
+<<<<<<< HEAD
+	c = RemoveInfo(c, "PPPPP");
+=======
+	ShowList(c);
+	c = RemoveInfo(c, "Albert\n");
+	c = RemoveInfo(c, "PPPPP\n");
+>>>>>>> 90e86991c78c6e72d87beb7e5190f56ff5f2f48b
+	//WriteFile(c);
 
 
 	//ShowList(c);
 	// ShowList(c);
 	// c = AddInfoStart(c, "toto");
 	ShowList(c);
+	//ShowList(c);
+	//c = AddInfoStart(c, "toto");
+	//ShowList(c);
 	//ShowList(c);
 	//printf(" \n   %s   \n", c->next->name);
 	//ArrayData();
