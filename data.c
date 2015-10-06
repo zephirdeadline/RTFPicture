@@ -345,15 +345,16 @@ int CounterData()
 
 void ShowList(CharacterInfo *c)
 {
+	CharacterInfo* a = c;
 	int nb = 1;
 	if(CountList != 0)
 	{
 	do
 	{
-		printf("Le nb %d s'appelle %s et Caracter = %s et Image = %s\n", nb, c->name, c->caracter, c->image);
-		c = c->next;
+		printf("Le nb %d s'appelle %s et Caracter = %s et Image = %s\n", nb, a->name, a->caracter, a->image);
+		a = a->next;
 		nb++;
-	}while(c != NULL);
+	}while(a != NULL);
 	}
 }
 
