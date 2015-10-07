@@ -145,47 +145,96 @@ CharacterInfo* AddInfo(CharacterInfo *c, char *name)
 -------------------------------------------------*/
 
 
-void ModifInfo(CharacterInfo *c, char *name, char *newName){
+void ModifInfo(CharacterInfo *c, char *name, char *newName)
+{
 	while(c->name != name)
 	{
 			c = c->next;
 	}
 	c->name = newName;
-	c->image = "-Image";
-	c->caracter = "-Caracter";
+	c->image = Concat(name, "-Image");
+	c->caracter = Concat(name,"-Caracter");
+	FILE *file = NULL;
+	file = fopen("RTFP.data", "r+");
+	if(file != NULL)
+	{
+		printf("");	
+	}	
+	else
+	{
+		printf("impossible d'ouvrir le fichier RTFP.data");
+	}
+}
+
+
+/*---Ecriture du fichier RTFP.data a partir le la liste---
+---------------------------------------------------------*/
+void WriteFile(CharacterInfo *c)
+{
+	FILE *file = NULL;
+	file = fopen("RTFP.data", "w+");
+	if(file != NULL)
+	{
+		do
+		{
+			char *a;
+			fgets(a, 100, file);
+			fseek(file, 0, SEEK_END);
+			fprintf(file, "%s\n", c->name);
+			c = c->next;
+		}while(c != NULL);
+		printf("fichier ecrit avec succes, merci!\n");
+	}
+	else
+	{
+		printf("impossible d'ecrit le fichier\n");
+	}
+	
 }
 
 /*----------Suppression d'un element---------------
 -------------------------------------------------*/
 
-CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
+
+CharacterInfo* RemoveInfo(CharacterInfo *c, char *name1)
 { //attention si 0 ou 1 element !! Attention de 10 puis suppr = 90!
 	CharacterInfo *a = c;
 
-	RemoveFile (name); // supprime les fichiers de sauvgarde de l'élement dans la base de donné
+	 // supprime les fichiers de sauvgarde de l'élement dans la base de donné
 
 
 	
-	 ConfigFile('-');
+	 
+//	printf("recherche de : %s dans %s\n", name1, c->name);
+	if(CompareChar(c->name, name1))
 
-	if(c->name == name)
 	{
-
+		// printf("element supprimé\n");
 		CharacterInfo *b = c;
 		c = c->next;
+		WriteFile(c);
 		free(b);
+		ConfigFile('-');
+		RemoveFile (name1);
 		return c;
 	}
 	else
 	{
-
-		while(c->next->name != name)
+		// return c;
+		while(!CompareChar(a->next->name, name1))
 		{
-			c = c->next;
+			a = a->next;
+			if(a->next == NULL)
+				return c; 
 		}
-		c->next = c->next->next;
-		free(c->next);
-		return a;
+		ConfigFile('-');
+		RemoveFile (name1);
+		
+		a->next = a->next->next;
+		WriteFile(c);	
+		//free(a->next);
+	// printf("element supprimé en milieux de liste\n");
+		return c;
 	}
 
 
@@ -193,6 +242,23 @@ CharacterInfo* RemoveInfo(CharacterInfo *c, char *name)
 
 }
 
+
+
+/*-------------------------Comparaison de *char---------------------
+--------------------------------------------------------------------*/
+
+int CompareChar(char *a, char *b)
+{
+	int i = 0;
+	while(*(a+i) != '\0')
+	{
+		if(*(a+i) != *(b+i))
+			return 0;
+		i++;
+		
+	}
+	return 1;
+}
 
 
 /*--Suppression des fichiers d'un element suprimé--
@@ -275,7 +341,7 @@ int CountList(CharacterInfo *c)
 }
 
 
-/*------Recupere le d'element dans le fichier-----
+/*----Recupere le nb d'element dans le fichier-----
 -------------------------------------------------*/
 
 int CounterData()
@@ -305,15 +371,17 @@ int CounterData()
 
 void ShowList(CharacterInfo *c)
 {
+	CharacterInfo *a = c;
 	int nb = 1;
-
+	if(CountList != 0)
+	{
 	do
 	{
-		printf("Le nb %d s'appelle %s et Caracter = %s et Image = %s\n", nb, c->name, c->caracter, c->image);
-		c = c->next;
+		printf("Le nb %d s'appelle %s et Caracter = %s et Image = %s\n", nb, a->name, a->caracter, a->image);
+		a = a->next;
 		nb++;
-	}while(c != NULL);
-
+	}while(a != NULL);
+	}
 }
 
 /*-----Chargement et creation de la liste---------
@@ -345,7 +413,7 @@ CharacterInfo* ArrayData()
 						char *t = malloc(50*sizeof(char));
 						while((temp = fgetc(file)) != '\n')
 						{
-							*(t+pos)=temp;/////////////////////////////////////////A modifier!!!!!!!!!!!!!!!!!!!!!!!
+							*(t+pos)=temp;
 							pos++;
 						}
 						//fgets(t, 100, file) ;
