@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <gtk/gtk.h>
+#include "funcInter.h"
 
 int main(int argc, char **argv)
 {
@@ -8,7 +9,7 @@ int main(int argc, char **argv)
 	//gint width = 600, height = 400;	
 	GtkWidget * MainWindow = NULL, *DataWindow = NULL, *button = NULL, *zone = NULL, *image = NULL;
 
-	image = gtk_image_new_from_file("photo.jpg");
+	image = gtk_image_new_from_file("tutu.bmp");
 	MainWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	DataWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	zone = gtk_fixed_new();
@@ -26,7 +27,7 @@ int main(int argc, char **argv)
 	gtk_container_add(GTK_CONTAINER(MainWindow), zone);
 
 	g_signal_connect(G_OBJECT(MainWindow), "delete-event", G_CALLBACK(gtk_main_quit), NULL);
-	
+  //test de cliquer sur bouton avec la fonction "logConsole(char *str) qui affiche str dans la console	
 	gtk_widget_show_all(DataWindow);
 	gtk_widget_show_all(MainWindow);
 	printf("affichage ok!\n");

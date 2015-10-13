@@ -4,7 +4,7 @@
 #include <SDL/SDL_image.h>
 #include "pretraitement2.h"
  
-int main()
+/*int main()
 {
 	SDL_Init(SDL_INIT_VIDEO);
 	SDL_Surface *imageBase = NULL;
@@ -38,7 +38,9 @@ int main()
 
 
 
-}
+}*/
+
+
 Uint32 getpixel(SDL_Surface *surface,unsigned x, unsigned y)
 {
 Uint8 *p=(Uint8 *)surface->pixels+y*surface->pitch+x*(surface->format->BytesPerPixel);
@@ -117,51 +119,78 @@ void goToGrey(SDL_Surface * surface)
 
 SDL_UnlockSurface(surface);
 }
-void browse(SDL_Surface *image)
+void browse(SDL_Surface *image, int size)
 {
 SDL_Rect R,p;
 	p.x=0;
 	p.y=0;
 	
 SDL_Surface *fenetre=NULL;
-for(int i=0;i<image->w-24;i++)
+while(size < image->h && size < image->w)
 {
-for (int j=0;j<image->h-24;j++)
+for(int i=0;i<image->w-size;i++)
+{
+for (int j=0;j<image->h-size;j++)
 {
 
-fenetre=SDL_CreateRGBSurface(SDL_HWSURFACE,24,24,32,0,0,0,0);
+fenetre=SDL_CreateRGBSurface(SDL_HWSURFACE,size,size,32,0,0,0,0);
 R.x=i;
 R.y=j;
-R.w=24;
-R.h=24;
+R.w=size;
+R.h=size;
 SDL_BlitSurface(image,&R,fenetre,&p);
-
-
 }
+}
+size*=1.25;
 }
 SDL_SaveBMP (fenetre,"tata.bmp");
 }
-void Integral(SDL_Surface *image)
+
+int **createArray(int nbl, int nbcol)
 {
-int x,y;
-SDL_Surface *fenetre=NULL;
-fenetre=SDL_CreateRGBSurface(SDL_HWSURFACE,image->w,image->h,32,0,0,0,0);
-defPixel(fenetre,0,0,getpixel(image,0,0));
-for(x=1;x<image->w;x++)
-{
-defPixel(fenetre,x,0,getpixel(image,x,0)+getpixel(fenetre,x-1,0));
+    int **array = (int **)malloc(sizeof(int*)*nbl);
+    int *array2 = (int *)malloc(sizeof(int)*nbcol*nbl);
+    for(int i=0; i<nbl; i++)
+    {
+	array[i] = &array2[i*nbcol];
+    }
+    return array;
 }
-for(y=1;y<image->h;y++)
+void freeArray(int **tab)
 {
-double line=getpixel(image,0,y);
-defPixel(fenetre,0,y,getpixel(fenetre,0,y-1)+line);
-for(x=0;x<image->w;x++)
+    free(tab[0]);
+    free(tab);
+}
+static void fill_array(int **arr, int l, int c)
 {
-line+=getpixel(image,0,y);
-defPixel(fenetre,x,y,getpixel(fenetre,x,y-1)+line);
+    for(int i =0; i<l; i++)
+    {
+	for(int j=0; j<c; j++)
+	{
+	    arr[i][j] = 0;
+	}
+    }
 }
 
-}
-SDL_SaveBMP(fenetre,"titi.bmp");
-
+int **Integral(SDL_Surface *image)
+{
+    int x,y;
+    int **arr = createArray(image->h, image->w);
+    fill_array(arr, image->h, image->w);
+    arr[0][0] = getpixel(image,0,0);
+    for(x=1; x<image->w; x++)
+    {
+	arr[0][x] = getpixel(image,0,x) + arr[0][x-1];
+    }
+    for(y=1; y<image->h; y++)
+    {
+	double line = getpixel(image,y,0);
+	arr[y][0] = arr[y-1][0] + line;
+	for(x=0; x<image->w; x++)
+	{
+	    arr[y][x] = arr[y-1][x] + line;
+	    line += getpixel(image,y,0);
+	} 
+    }
+    return arr;
 }
