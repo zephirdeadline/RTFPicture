@@ -3,12 +3,6 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include "pretraitement2.h"
-
-# ifndef PIXEL_OPERATIONS_H_
-# define PIXEL_OPERATIONS_H_
- 
-# include <stdlib.h>
-# include <SDL.h>
  
 int main()
 {
@@ -123,7 +117,6 @@ void goToGrey(SDL_Surface * surface)
 
 SDL_UnlockSurface(surface);
 }
-
 void browse(SDL_Surface *image)
 {
 SDL_Rect R,p;
