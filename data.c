@@ -10,12 +10,12 @@
 char* Concat(char *a, char *b)
 {
 	char *c = malloc(50*sizeof(char));
-	for(int i = 0; i<strlen(a); i++)
+	for(unsigned int i = 0; i<strlen(a); i++)
 	{
 		*(c+i) = *(a+i);
 	}
-	int j;
-	int lena = strlen(a);
+	unsigned int j;
+	unsigned int lena = strlen(a);
 	for(j = 0; j<strlen(b); j++)
 	{
 		*(c+lena+j)=*(b+j);
@@ -116,7 +116,7 @@ void WriteFile(CharacterInfo *c)
 	{
 		do
 		{
-			char *a;
+			char *a = NULL;
 			fgets(a, 100, file);
 			fseek(file, 0, SEEK_END);
 			fprintf(file, "%s\n", c->name);
@@ -264,7 +264,7 @@ void ShowList(CharacterInfo *c)
 {
 	CharacterInfo *a = c;
 	int nb = 1;
-	if(CountList != 0)
+	if(CountList(c) != 0)
 	{
 	do
 	{
