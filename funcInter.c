@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "funcInter.h"
-
-void logConsole(char *str)
+#include <gtk/gtk.h>
+void logConsole(GtkWidget *w, gpointer str)
 {
-  printf("%s\n", str);
+  printf("%s\n", (char*)str);
 }
 
 void logOk()

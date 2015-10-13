@@ -1,3 +1,5 @@
+#include <gtk/gtk.h>
+
 //void ModifPicture(GtkWidget* widget);
-void logConsole(char *str);
+void logConsole(GtkWidget *w, gpointer str);
 void logOk();
