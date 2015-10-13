@@ -2,4 +2,4 @@
 
 //void ModifPicture(GtkWidget* widget);
 void logConsole(GtkWidget *w, gpointer str);
-void logOk()
+void logOk();
