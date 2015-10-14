@@ -1,0 +1,7 @@
+
+#include <gtk/gtk.h>
+
+
+//void ModifPicture(GtkWidget* widget);
+void logConsole(GtkWidget *lol, gpointer kikou);
+void logOk();
