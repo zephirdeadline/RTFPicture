@@ -4,11 +4,7 @@
 #include <SDL/SDL_image.h>
 #include "pretraitement2.h"
 
-# ifndef PIXEL_OPERATIONS_H_
-# define PIXEL_OPERATIONS_H_
- 
-# include <stdlib.h>
-# include <SDL.h>
+
  
 /*int main()
 {
@@ -125,12 +121,9 @@ void goToGrey(SDL_Surface * surface)
 
 SDL_UnlockSurface(surface);
 }
-<<<<<<< HEAD
 
-void browse(SDL_Surface *image)
-=======
 void browse(SDL_Surface *image, int size)
->>>>>>> bed746c72a969916d20cda4b2aeb7f1a65f89c76
+
 {
 SDL_Rect R,p;
 	p.x=0;

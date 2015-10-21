@@ -22,6 +22,8 @@ int main(int argc, char **argv)
 	zone = gtk_fixed_new();
         newName = gtk_text_view_new();
         gtk_entry_set_text(GTK_ENTRY(newName), "mouhahahah");
+        //gtk_entry_set_editable(GTK_ENTRY(newName), TRUE);
+        //gtk_entry_set_visibility(GTK_ENTRY(newName), TRUE);
  	buttonLoadImage = gtk_button_new_with_label("Import");
         buttonSupprData = gtk_button_new_with_label("Supprimer");
         buttonLoadData = gtk_button_new_with_label("Recharger");
@@ -44,7 +46,7 @@ int main(int argc, char **argv)
         gtk_fixed_put(GTK_FIXED(zone), newName, 100, 350);
 	gtk_fixed_put(GTK_FIXED(zone), image, 0, 0);
 	gtk_container_add(GTK_CONTAINER(MainWindow), zone);
-       // gtk_box_pack_start(GTK_BOX(MainWindow), newName, TRUE, TRUE, 0);
+        //gtk_box_pack_start(GTK_BOX(zone), newName, TRUE, TRUE, 0);
 /*
 	g_signal_connect(G_OBJECT(MainWindow), "delete-event",
             G_CALLBACK(gtk_main_quit), NULL);

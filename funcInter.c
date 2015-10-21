@@ -22,14 +22,14 @@ void logOk()
 /*---------------------------------
 --------Remove info----------------
 -----------------------------------*/
-
+/*
 void GTKRemoveInfo (GtkWidget *w, gpointer FileName)
 {
 	char *name = (char*)  FileName;
 	RemoveFile (c, name);   // c étant le CharacterInfo qui contient la liste chainé
 }
 
-
+*/
 
 
 
@@ -39,7 +39,7 @@ void GTKRemoveInfo (GtkWidget *w, gpointer FileName)
 /*---------------------------------
 --------Modif info-----------------
 -----------------------------------*/
-
+/*
 void GTKModifInfo (GtkWidget *w, gpointer FileName)
 {
 
@@ -47,7 +47,7 @@ void GTKModifInfo (GtkWidget *w, gpointer FileName)
 	char *NewName =  "appel de la fonction qui récup le contenu d'un label dans l'interface graphique";    
 	ModifInfo(c, ActualName, NewName);
 }
-
+*/
 /*
 // Faire la fonction qui récup le contenu d'un label dans l'interface graphique
 --------------------------------------------------------------- */
@@ -62,7 +62,7 @@ void GTKModifInfo (GtkWidget *w, gpointer FileName)
 /*---------------------------------
 --------Add info-------------------
 -----------------------------------*/
-
+/*
 void GTKAddInfo (GtkWidget *w, gpointer FileName)
 {
 
@@ -71,7 +71,7 @@ void GTKAddInfo (GtkWidget *w, gpointer FileName)
 
 }
 
-
+*/
 
 
 
@@ -81,7 +81,7 @@ void GTKAddInfo (GtkWidget *w, gpointer FileName)
 /*---------------------------------
 Modif Batch (ajout plusieurs elements)
 -----------------------------------*/
-
+/*
 void GTKAddBatch (GtkWidget *w, gpointer board)  // récupére un tableau de CHaracterInfo (un tableau de strucure quoi)
 {
 
@@ -96,7 +96,7 @@ AddBatch (c, tab);
 
 
 
-
+*/
 
 
 
