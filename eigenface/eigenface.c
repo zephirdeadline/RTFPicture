@@ -10,11 +10,11 @@ int main()
 {
   
   SDL_Surface** tab = malloc(4*sizeof(SDL_Surface));
-  tab[0] = IMG_Load("moi2.JPG");
-  tab[1] = IMG_Load("moi1.JPG");
-  tab[2] = IMG_Load("moi3.JPG");
-  tab[3] = IMG_Load("moi4.JPG");
-
+  goToGrey(tab[0] = IMG_Load("moi2.JPG"));
+  goToGrey(tab[1] = IMG_Load("moi1.JPG"));
+  goToGrey(tab[2] = IMG_Load("moi3.JPG"));
+  goToGrey(tab[3] = IMG_Load("moi4.JPG"));
+  SDL_SaveBMP(tab[0], "testbefore.bmp");
   SDL_SaveBMP(Moyenne(tab, 4), "test.bmp");
   
   SDL_SaveBMP(Diff(IMG_Load("moi1.JPG"), IMG_Load("test.bmp")), "testDiff.bmp");
