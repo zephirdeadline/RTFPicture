@@ -9,13 +9,14 @@ SDL_Surface* Diff(SDL_Surface* a, SDL_Surface* b);
 int main()
 {
   
-  SDL_Surface** tab = malloc(3*sizeof(SDL_Surface));
-  tab[0] = IMG_Load("lucas2.jpg");
-  tab[1] = IMG_Load("lucas1.jpg");
-  tab[2] = IMG_Load("lucas3.jpg");
-  // tab[3] = IMG_Load("moi4.JPG");
 
-  SDL_SaveBMP(Moyenne(tab, 3), "test.bmp");
+  SDL_Surface** tab = malloc(4*sizeof(SDL_Surface));
+  goToGrey(tab[0] = IMG_Load("moi2.JPG"));
+  goToGrey(tab[1] = IMG_Load("moi1.JPG"));
+  goToGrey(tab[2] = IMG_Load("moi3.JPG"));
+  goToGrey(tab[3] = IMG_Load("moi4.JPG"));
+  SDL_SaveBMP(tab[0], "testbefore.bmp");
+  SDL_SaveBMP(Moyenne(tab, 4), "test.bmp");
   
   SDL_SaveBMP(Diff(IMG_Load("lucas1.jpg"), IMG_Load("test.bmp")), "testDiff.bmp");
   return 0;
