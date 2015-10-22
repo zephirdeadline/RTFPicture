@@ -8,13 +8,16 @@ SDL_Surface* Moyenne(SDL_Surface **tab, size_t t);
 SDL_Surface* Diff(SDL_Surface* a, SDL_Surface* b);
 int main()
 {
-  /*TEST MOYENNE
-  SDL_Surface** tab = malloc(2*sizeof(SDL_Surface));
-  tab[0] = IMG_Load("../AnnexesRTFPicture/photo1.jpg");
-  tab[1] = *tab ;
-  SDL_SaveBMP(Moyenne(tab, 2), "test.bmp");
-  */
-  SDL_SaveBMP(Diff(IMG_Load("../AnnexesRTFPicture/photo1.jpg"), IMG_Load("../AnnexesRTFPicture/photo1.jpg")), "testDiff.bmp");
+  
+  SDL_Surface** tab = malloc(4*sizeof(SDL_Surface));
+  tab[0] = IMG_Load("moi2.JPG");
+  tab[1] = IMG_Load("moi1.JPG");
+  tab[2] = IMG_Load("moi3.JPG");
+  tab[3] = IMG_Load("moi4.JPG");
+
+  SDL_SaveBMP(Moyenne(tab, 4), "test.bmp");
+  
+  SDL_SaveBMP(Diff(IMG_Load("moi1.JPG"), IMG_Load("test.bmp")), "testDiff.bmp");
   return 0;
 }
 
