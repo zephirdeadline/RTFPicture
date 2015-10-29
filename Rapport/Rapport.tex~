@@ -1,0 +1,163 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage {hyperref} % couleur du tableau
+\usepackage{xcolor}	  % couleur du tableau
+\usepackage{graphicx}
+\usepackage{multirow} %Utilisation pour fusion case tableau%
+\usepackage{colortbl} %COuleur Tableau%
+\usepackage{fancyhdr}
+\usepackage{times}
+\usepackage[final]{pdfpages} 
+\usepackage[left=4cm,right=3cm,top=2cm,bottom=2.5cm]{geometry} %FUCKING MARGE DE PETIT
+\usepackage{setspace}
+\setstretch{1,5} % FUCKING INTERLIGNE DE PETIT
+\author{Lucas}
+\sloppy
+
+\title{Rapport de soutenance}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{Info Spé}
+\fancyhead[R]{Epita 2019}
+\fancyfoot[L]{RTFPicture}
+
+ \pagestyle{fancy}
+
+\begin{document}
+
+%Page de garde%
+
+
+\begin{titlepage}
+
+
+\flushright \includegraphics[scale=.15]{Pictures/EPITA_LOGO_DEF.png}
+\flushright Promo 2019
+
+
+%\includegraphics[scale=.15]{EPITA_LOGO_DEF.png}
+%\hfill
+%EPITA
+%Promo 2019
+
+\begin{center}
+
+%\advance\leftskip by 1.75cm
+\hspace{1.5cm}
+{\Huge Rapport de 1er soutenance} 
+\newline
+\newline
+\newline
+\newline
+\newline
+%/ \includegraphics[scale=.35]{Pictures/logov2-0.jpg}
+\end{center}
+\begin{center}
+
+%\vspace{0.7cm}
+\end{center}
+\begin{Large}
+\begin{center}
+Dan Azoulay, Melvyn Petrochy, Ismail Keskas, Lucas Dessert \end{center}
+\end{Large}
+\vspace{.5cm}
+\begin{center}
+\begin{large}
+Novembre 2015
+\end{large}
+\end{center}
+
+\noindent
+\newline
+\newline
+\textit{Nom du groupe :} Schrödinger \newline 
+\textit{Nom du projet :} RTFPicture\newline 
+\textit{Chef de projet :} Keskas Ismail \newline
+\end{titlepage}
+\newpage
+
+%% ICI sommaire %%
+\newpage
+\tableofcontents
+
+%% Debut Document%%
+\newpage
+\section*{Introduction}
+Ce document est le rapport de la première soutenance. Il a pour but de présenter une synthèse sur le travail fourni par l'équipe en charge du projet. Cette équipe est formée de quatre étudiants en deuxième année du cycle préparatoire de l'EPITA : Dan AZOULAY (azoul\_d), Melvyn PETROCHY (petro\_m), Ismail KESKAS (keska\_i) et Lucas DESSERT (desser\_l).
+
+ Notre projet est un logiciel de reconnaissance facial codé en C99 sous Linux, qui sera capable de rechercher des personnes présentes sur une photo donné, et qui à partir de cette photo donnera la liste des personnes présentes sur la photo qui auront été préalablement enregistré dans la base de donnée du logiciel.
+
+
+
+\newpage
+
+
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+ \section{Présentation du groupe Schrödinger} 
+ 
+
+
+\subsection{Dan AZOULAY}
+
+
+\subsection{Melvyn PETROCHY}
+
+
+\subsection{Ismail KESKAS}
+
+
+\subsection{Lucas DESSERT}
+
+
+
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{RTFPicture}
+\subsection{Fonctionnement}
+
+L'utilisation du logiciel est assez simple. Tous d'abord l'utilisateur devra remplir sa base de données de visages et nommé les personnes ajouté pour que le logiciel puisse ensuite traité ces photos, en extraire les informations qui lui seront utiles pour une futur reconnaissance, et la sauvegarder dans sa base de donnée.
+
+Une fois ceci fait, l'utilisateur peux ensuite ajouter une photo quelconque au logiciel qui l'analysera et lui dira quels sont les personnes qu'il a reconnue en croisant les visages détectés sur la photo et sa base de données. Le logiciel sera aussi capable de signaler les absents, et proposera a l'utilisateur d'ajouter les nouveaux visages détecté (s'il y en à) dans sa base de donnée pour pouvoir les reconnaitre la prochaine fois.
+
+L'utilisateur pourra a tous moment gérer la base de données, en ajoutant ou supprimant des personnes à sa guise (Il pourra bien sûr modifier le nom des personnes déjà enregistré s'il le souhaite).
+
+
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{Détection de visage}
+
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{Base de donnée}
+
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{Reconnaissance de visage}
+
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{Les prochains objectifs}
+\subsection{L'interface graphique}
+
+
+\newpage
+\subsection{l'optimisation}
+
+
+\newpage
+
+\section*{Conslusion}
+
+
+
+\end{document}
