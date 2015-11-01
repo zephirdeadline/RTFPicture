@@ -1,0 +1,23 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Pr\'esentation du groupe Schr\"odinger et r\'epartition des taches}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Origine du groupe}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}R\'epartition des taches}{3}{subsection.1.2}
+\contentsline {section}{\numberline {2}RTFPicture}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Fonctionnement}{4}{subsection.2.1}
+\contentsline {section}{\numberline {3}D\'etection de visage}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Niveau de gris et pixels de l'image}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Les caract\'eristiques pseudo-Haar}{5}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Image integrale}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Adaboost}{8}{subsection.3.4}
+\contentsline {section}{\numberline {4}Base de donn\'ee}{10}{section.4}
+\contentsline {subsection}{\numberline {4.1}Sa structure}{10}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Au demarrage}{11}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}L'ajout}{11}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}La suppression}{11}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}La modification}{12}{subsection.4.5}
+\contentsline {section}{\numberline {5}Les prochains objectifs}{13}{section.5}
+\contentsline {subsection}{\numberline {5.1}Reconnaissance de visage}{13}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}L'interface graphique}{14}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}l'optimisation}{15}{subsection.5.3}
+\contentsline {section}{\numberline {6}Conclusion}{16}{section.6}
+\contentsline {section}{\numberline {7}Annexes}{16}{section.7}
