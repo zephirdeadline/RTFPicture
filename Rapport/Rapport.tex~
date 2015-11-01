@@ -134,19 +134,59 @@ L'utilisateur pourra a tous moment gérer la base de données, en ajoutant ou su
 \section{Détection de visage}
 
 
+
+\subsection{Les caractéristique de Haar}
+
+
+
+\subsection{Adaboost}
+
+
 \newpage
 %/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 \section{Base de donnée}
 
+\subsection{Sa structure}
 
-\newpage
-%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-\section{Reconnaissance de visage}
+	Affin de gérer principalement l'ajout et la suppression des visages dans le logiciel, il nous fallait créer une base de donné adapté a nos besoin. Elle doit pouvoir enregistrer une nouvelle personne, c'est a dire son nom, une ou plusieurs photos, et stocker les résultats du pré-traitement de l'image pour seront utilisés pour la reconnaissance de la personne.
+
+Au départ nous avons réfléchis à comment créer cette base de donnée, et quoi utiliser pour y arriver. Nous avons étudier les possibilités de la bibliothèque SQL par exemple, qui est l'une des plus connus pour les bases de donnés, mais nous avons finalement choisi de n'utiliser aucune bibliothèque particulière et de coder nous même en C notre propre structure de donné. Nous n'étions pas convaincue par l'utilité de SQL pour notre projet et il nous a paru plus simple de créer notre propre type de donné affin de l'adapter parfaitement au besoin, et de la moduler plus facilement. De plus, aucuns d'entre nous n'avait des connaissances (même basique) dans la SQL.
+
+
+Nous avons codé notre base de données sous forme de liste dynamique chaînée, pour ne pas avoir de problème de taille maximum ou d'allocation mémoire trop petite.Chaque personne ajouté se retrouve être un élément d'une liste chaîné avec un pointeur sur l’élément suivant de la liste (s'il existe). Chaque élément de cette liste dispose de trois string, l'un pour le nom de la personne qui est enregistré dans cet élément, et les deux autres seront interprété comme des pointeurs sur un dossier, le premier pointeur pointera sur le dossier qui contiendra le ou les images de la personne, et le deuxième pointera sur le dossier dans le quel les résultats des traitements de l'image seront enregistré (dans des fichier .text). L'avantage de cette structure est qu'au lancement de du logiciel, un simple parcourt d'un fichier texte qui contient tous les noms enregistré permettra de reconstituer la liste dynamique représentant tous les visage que le logiciel est capable de reconnaître.
+
+\subsection{AU démarrage}
+
+Mais pour réussis à reconstituer cette liste chaîné nous avons nommé les trois string de chaque élément d'une façon spécifique. Par exemple, si on enregistre une personne sous le nom de Xavier, la string du nom sera évidement "Xavier", la string qui fait office de pointeur sur le dossier qui contient la ou les photos de Xavier contiendra "Xavier-Image" et la troisième string qui permettra de trouver le dossier ou sont enregistré les résultats du pré-traitement de l'image contiendra "Xavier-Character". De cette façon un simple fichier text qui contient tous les noms des personnes enregistré (un registre) permettra via une fonction que nous avons codé, de reconstituer la liste dynamique tel qu'elle était lors de la dernière activité du logiciel. 
+
+\subsection{L'ajout}
+
+Pour ajouter un élément a notre liste chaîné, nous avons codé une fonction qui prend en paramètre la liste chaîné ainsi que le nom de la personne a ajouter et qui vas donc créer un nouvel élément, remplir les trois string en fonction du nom de la personne, et l'ajouter à la tête de liste (car l'ajout en fin de liste impliquerai de parcourir toute la liste avant de procéder à l'ajout). 
+
+
+En plus de ça, la fonction d'ajout va écrire dans le fichier texte qui sert de registre, le nom de cette personne, affin qu'elle puisse être aussi ajouter dans la liste chaîné au prochain démarrage du logiciel.
+
+
+Nous avons aussi codé une fonction qui permet d'ajouter plusieurs élément d'un coup, elle prend en argument la liste dynamique ainsi qu'un tableau de string.
+
+\subsection{La suppression}
+
+La fonction de suppression elle, recherche l’élément à supprimer au sein de la liste dynamique, le supprime si elle le trouve et efface son nom dans le registre ainsi que les deux dossiers qui contiennent les photos et les résultats du pré-traitement de l'image.
+
+\subsection{La modification}
+
+Notre fonction de modification permet pour le moment de modifier le nom d'une personne déjà enregistré dans la base de donné (elle modifie l'élément dans la liste dynamique ainsi que le nom écrit dans le registre).
 
 
 \newpage
 %/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 \section{Les prochains objectifs}
+\subsection{Reconnaissance de visage}
+
+Pour la soutenance finale, nous prévoyons d'implémenter une interface graphique simple et intuitive qui permettra via de simple boutons, de visualiser les photos des personnes déjà enregistré, de supprimer ou d'ajouter des personnes dans la base de donnée, et bien évidemment de lancer une recherche de personne présente sur une photo.
+
+
+\newpage
 \subsection{L'interface graphique}
 
 
@@ -156,7 +196,7 @@ L'utilisateur pourra a tous moment gérer la base de données, en ajoutant ou su
 
 \newpage
 
-\section*{Conslusion}
+\section*{Conclusion}
 
 
 
