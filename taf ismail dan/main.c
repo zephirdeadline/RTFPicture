@@ -67,14 +67,15 @@ int main (int argc, char *argv[])
       {
         if(argv[1] == "bd")
         {
-          char *a = "jerome", *b = "guillaume", *c = "valentin" = *b = NULL;
+          CharacterInfo *c = NULL;
+          c= ArrayData();
+          char *a = "jerome", *b = "guillaume", *e= "valentin", *d = NULL;
           char **tab = malloc(4 * sizeof(a));
           tab[0] = a;
           tab[1] = b;
-          tab[2] = c;
+          tab[2] = e; 
           tab[3] = d;
-          CharacterInfo *c = NULL;
-          c= ArrayData();
+          
 
           if(argv[2] == "-add")
           {
