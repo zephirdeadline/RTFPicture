@@ -3,4 +3,4 @@ CFLAGS= -Wall -Wextra -o2 -lm -lSDL -lSDLmain -lSDL_image `pkg-config --cflags -
 LDLIBS=`pkg-config --libs sdl`
 
 all:
-	$(CC) $(CFLAGS)  pretraitement2.c data.c eigenface.c  funcInter.c main.c -o RTFPicture
+	$(CC) $(CFLAGS)  pretraitement2.c haar.c data.c eigenface.c  funcInter.c main.c -o RTFPicture

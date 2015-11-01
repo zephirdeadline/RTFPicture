@@ -15,7 +15,7 @@ int main (int argc, char *argv[])
   }
   else
   {
-    if(argc > 2)
+    if(argc == 3)
     {
 	  //deux argument:= 1er grey pour la fonction et le deuxième un nom d'image :appeler
         if(argv[1] == "grey")
@@ -52,7 +52,7 @@ int main (int argc, char *argv[])
 	    arr=weightImage(tab, 797, 797);	
 	    adaboost(arr,atoi(argv[2]),797);
       }
-    else if(argc == 2)
+    if(argc == 2)
     {
       //1 argument 1er image pour la fonction:appeler
         if(argv[1] == "image")
@@ -63,7 +63,46 @@ int main (int argc, char *argv[])
         }
 
     }
-    else
+      if(argc > 2)
+      {
+        if(argv[1] == "bd")
+        {
+          char *a = "jerome", *b = "guillaume", *c = "valentin" = *b = NULL;
+          char **tab = malloc(4 * sizeof(a));
+          tab[0] = a;
+          tab[1] = b;
+          tab[2] = c;
+          tab[3] = d;
+          CharacterInfo *c = NULL;
+          c= ArrayData();
+
+          if(argv[2] == "-add")
+          {
+            c=AddInfo(c, argv[3]);
+          }
+
+          if(argv[2] == "-addBatch")
+          {
+            c=AddBatch(c, tab);
+          }
+
+          if(argv[2] == "-remove")
+          {
+            c=RemoveInfo(c, argv[3]);
+          }
+
+           if(argv[2] == "-modif")
+          {
+            ModifInfo(c, argv[3], argv[4]);
+          }
+
+          if(argv[2] == "-ls")
+          {
+            ShowList(c);
+          }
+        }
+      }
+      else
     {
       printf("erreur arg");
     }
