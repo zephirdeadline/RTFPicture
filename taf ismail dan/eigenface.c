@@ -6,7 +6,7 @@
 
 SDL_Surface* Moyenne(SDL_Surface **tab, size_t t);
 SDL_Surface* Diff(SDL_Surface* a, SDL_Surface* b);
-int main()
+/*int main()
 {
   
 
@@ -21,7 +21,7 @@ int main()
   SDL_SaveBMP(Diff(IMG_Load("lucas1.jpg"), IMG_Load("test.bmp")), "testDiff.bmp");
   return 0;
 }
-
+*/
 
 /*************************************************************
  * *******************Moyenne de l'image********************
