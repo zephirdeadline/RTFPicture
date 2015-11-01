@@ -17,13 +17,12 @@ int main (int argc, char *argv[])
   }
   else
   {
-    if(argc == 3)
+    if(argc >= 3)
     {
     */
 	  //deux argument:= 1er grey pour la fonction et le deuxième un nom d'image :appeler
         if((strcmp(argv[1],"grey"))==0)
         {
-	printf("fuck");
           SDL_Surface *surface=IMG_Load(argv[2]);
           goToGrey(surface);
         }
@@ -31,13 +30,17 @@ int main (int argc, char *argv[])
         if((strcmp(argv[1],"integral"))==0)
         {
           SDL_Surface *surface=IMG_Load(argv[2]);
-          Integral(surface);
+         int **arr= Integral(surface);
+	  printf("%d\n%d\n", getpixel(surface,0,0), getpixel(surface,0,1));
+          printf("%d\n",arr[0][1]);		
         }
 //2 argument:= 1er haar pour la fonction et le deuxième un nom d'image:appeler
         if((strcmp(argv[1],"haar"))==0)
         {
           SDL_Surface *surface=IMG_Load(argv[2]);
-          haarr2(surface);
+          queue q=haarr2(surface);
+	if(argc==4)
+	  {printf("Le caractéristique %d vaut %d\n",atoi(argv[3]),search(q,atoi(argv[3])).res);}
         }
 
 //2 argument 1er decision 2eme entier i: appeler
@@ -46,7 +49,14 @@ int main (int argc, char *argv[])
           example* arr;
 	      image *tab = malloc(797*sizeof(image));
          arr=weightImage(tab, 797, 797);	
-	      float *t=decision(arr,(atoi(argv[2]))/*i*/,797);
+	      float *t=decision(arr,(atoi(argv[2])),797);
+	
+	printf("%f|",t[0]);
+	printf("%f|",t[1]);
+	printf("%f|",t[2]);
+	printf("%f|",t[3]);
+	printf("%f|",t[4]);
+	printf("\n");
         }
 //2 argument adaboost pour la fonction entier T pour le nombre de tour:appeler
       if((strcmp(argv[1],"adaboost"))==0)
