@@ -20,8 +20,10 @@ int main()
 	//printf("%s\n", c->name);
 	//c = RemoveInfo(c, "Sacha");
 	c = AddBatch(c, tab);
-	ShowList(c);
-	//c = AddInfoStart(c, "toto");
+	ModifInfo(c, "Tom", "Sami");
+    ShowList(c);
+	
+    //c = AddInfoStart(c, "toto");
 	//ShowList(c);
 	return 0;
 }

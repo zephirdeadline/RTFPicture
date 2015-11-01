@@ -10,6 +10,7 @@
 # include <string.h>
 int main (int argc, char *argv[])
 {
+ /*
   if(argc < 2)
   {
     printf("manque arg");
@@ -18,6 +19,7 @@ int main (int argc, char *argv[])
   {
     if(argc == 3)
     {
+    */
 	  //deux argument:= 1er grey pour la fonction et le deuxième un nom d'image :appeler
         if((strcmp(argv[1],"grey"))==0)
         {
@@ -54,8 +56,8 @@ int main (int argc, char *argv[])
 	    arr=weightImage(tab, 797, 797);	
 	    adaboost(arr,atoi(argv[2]),797);
       }
-    if(argc == 2)
-    {
+   // if(argc == 2)
+   // {
       //1 argument 1er image pour la fonction:appeler
         if((strcmp(argv[1],"image"))==0)
         {
@@ -64,51 +66,54 @@ int main (int argc, char *argv[])
 	      arr=weightImage(tab, 797, 797);
         }
 
-    }
-      /*if(argc > 2)
+   /* }
+      if(argc > 2)
       {
-        if(argv[1] == "bd")
+      */
+        if(strcmp(argv[1], "bd") == 0)
         {
-          char *a = "jerome", *b = "guillaume", *c = "valentin" = *b = NULL;
+          CharacterInfo *c = NULL;
+          c= ArrayData();
+          char *a = "jerome", *b = "guillaume", *e= "valentin", *d = NULL;
           char **tab = malloc(4 * sizeof(a));
           tab[0] = a;
           tab[1] = b;
-          tab[2] = c;
+          tab[2] = e; 
           tab[3] = d;
-          CharacterInfo *c = NULL;
-          c= ArrayData();
+          printf("enter\n\n\n"); 
 
-          if(argv[2] == "-add")
+          if(strcmp(argv[2],"-add")==0)
           {
+            printf("addddddddddddddddddd!");
             c=AddInfo(c, argv[3]);
           }
 
-          if(argv[2] == "-addBatch")
+          if(strcmp(argv[2],"-addBatch")==0)
           {
             c=AddBatch(c, tab);
           }
 
-          if(argv[2] == "-remove")
+          if(strcmp(argv[2], "-remove")==0)
           {
             c=RemoveInfo(c, argv[3]);
           }
 
-           if(argv[2] == "-modif")
+           if(strcmp(argv[2] , "-modif")==0)
           {
             ModifInfo(c, argv[3], argv[4]);
           }
 
-          if(argv[2] == "-ls")
+          if(strcmp(argv[2], "-ls")==0)
           {
             ShowList(c);
           }
-        }
+       /* }
       }
       else
     {
       printf("erreur arg");
-    }*/
-  }
+    }
+  }*/
   }
   return 0;
 }
