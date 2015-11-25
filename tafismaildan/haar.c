@@ -936,14 +936,14 @@ int eval()
 	while ( fgets ( buffer, sizeof buffer, fsrc) != NULL ) /* read a line */
       	{
 		int k = 0;
-		size_t i = 1;
+		size_t i = 2;
         	while(buffer[i] != '\0')
 		{
 			float tab[4];
 			char buffer2[64] = "";
 			if(buffer[i] == '|' || buffer[i] == '\0')
 			{
-				tab[k] = atof(buffer2);
+				//tab[k] = strtof(buffer2);
 				printf("|%f", tab[k]);
 				k++;	
 				i++;

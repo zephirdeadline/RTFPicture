@@ -96,7 +96,10 @@ int main (int argc, char *argv[])
 	   image *tab = malloc(797*sizeof(image));
            arr=weightImage(tab, 797, 797);
 	  cascade(arr,0.1,20,0.1,0.1);*/
-		SDL_Surface *surf=IMG_Load("po1.jpg");
+		SDL_Surface *surf=IMG_Load("cll.jpg");
+		 //feature *arr= haarr2(surf);
+		//printf("%d\n", arr[0].res);
+	//printf("%d\n", scaling(surf,arr[0],24));
 		//drawEmptyRect(surf,0,0,250,250,0,0,0);		
 		detect(surf);
          //SDL_Surface *surface=IMG_Load(argv[2]);
@@ -771,7 +774,7 @@ int evaluate(float *tab,feature f)
 return 0;
    
 }
-int evaluate2(float *tab,int f)
+/*int evaluate2(float *tab,int f)
 {
    if((f>=tab[0])&&(tab[1]==1))
 	{
@@ -792,6 +795,7 @@ int evaluate2(float *tab,int f)
 return 0;
    
 }
+*/
 
 
 float *Beststump (example* arr,int d,int n)
@@ -1011,7 +1015,7 @@ int eval(int n,example* arr,int sl)
 	return s>0?1:-1;
 }
 
-int eval2(feature *feat,int sl)
+int eval2(feature *feat, SDL_Surface *surf)
 {
 	FILE* fsrc;
 	char buffer[128];
@@ -1045,7 +1049,7 @@ int eval2(feature *feat,int sl)
 			if(k==6)
 			{
 				
-				s=s+tab[5]*(evaluate2(tab,feat[(int)tab[4]].res));
+				//s=s+tab[5]*(evaluate2(tab,scaling(surf,feat[(int)tab[4]],24)));
 			}
 				
 			}
@@ -1064,6 +1068,690 @@ int eval2(feature *feat,int sl)
       fclose (fsrc);
 	//printf("%f",s);
 	return s>0?1:-1;
+}
+
+int evaluate2(float tab0, float tab1,int f)
+{
+   if((f>=tab0)&&(tab1==1))
+	{
+		return 1;
+	}
+   if((f<tab0)&&(tab1==1))
+	{
+		return -1;
+	}
+ if((f>=tab0)&&(tab1==-1))
+	{
+		return -1;
+	}
+   if((f<tab0)&&(tab1==-1))
+	{
+		return 1;
+	}
+return 0;
+   
+}
+
+int attentionalCascade(feature *feat, SDL_Surface *surf)
+{
+	float s=0;
+	
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+	
+	s = 0;
+	
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+
+	s = 0;
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	s = s+0.3149770216*(evaluate2(15004.6074218750,1.000000,scaling(surf,feat[(int)29972.0],24)));
+	s = s+0.3201983094*(evaluate2(60.6528320312,1.000000,scaling(surf,feat[(int)105645.0],24)));
+	s = s+0.3308580989*(evaluate2(-201619.4843750000,1.000000,scaling(surf,feat[(int)139719.0],24)));
+	s = s+0.2971280623*(evaluate2(-1729.4726562500,1.000000,scaling(surf,feat[(int)102956.0],24)));
+	s = s+0.3283367275*(evaluate2(10786.6362304688,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3398630213*(evaluate2(-7466.4345703125,-1.000000,scaling(surf,feat[(int)20307.0],24)));
+	s = s+0.3402661294*(evaluate2(66.6142578125,-1.000000,scaling(surf,feat[(int)56601.0],24)));
+	s = s+0.3212567263*(evaluate2(-648397.4375000000,-1.000000,scaling(surf,feat[(int)43390.0],24)));
+	s = s+0.3378948466*(evaluate2(-242616.3984375000,-1.000000,scaling(surf,feat[(int)123334.0],24)));
+	s = s+0.3069062830*(evaluate2(-244983.9218750000,1.000000,scaling(surf,feat[(int)79908.0],24)));
+	s = s+0.3177856960*(evaluate2(260819.2812500000,1.000000,scaling(surf,feat[(int)61598.0],24)));
+	s = s+0.3310358465*(evaluate2(-22741.6318359375,-1.000000,scaling(surf,feat[(int)126968.0],24)));
+	s = s+0.1928232848*(evaluate2(344347.7500000000,1.000000,scaling(surf,feat[(int)121463.0],24)));
+	s = s+0.2454076890*(evaluate2(-12376.1406250000,-1.000000,scaling(surf,feat[(int)90198.0],24)));
+	s = s+0.2807313770*(evaluate2(137226.7500000000,1.000000,scaling(surf,feat[(int)6616.0],24)));
+	s = s+0.2937919202*(evaluate2(-55570.6035156250,1.000000,scaling(surf,feat[(int)85837.0],24)));
+	s = s+0.2766382749*(evaluate2(-163109.9140625000,-1.000000,scaling(surf,feat[(int)90854.0],24)));
+	s = s+0.2848532721*(evaluate2(-16371.7431640625,-1.000000,scaling(surf,feat[(int)22818.0],24)));
+	s = s+0.3103580271*(evaluate2(34924.1855468750,1.000000,scaling(surf,feat[(int)147608.0],24)));
+	s = s+0.3385338999*(evaluate2(-48551.2539062500,-1.000000,scaling(surf,feat[(int)146642.0],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+	
+	s =0;
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	s = s+0.3149770216*(evaluate2(15004.6074218750,1.000000,scaling(surf,feat[(int)29972.0],24)));
+	s = s+0.3201983094*(evaluate2(60.6528320312,1.000000,scaling(surf,feat[(int)105645.0],24)));
+	s = s+0.3308580989*(evaluate2(-201619.4843750000,1.000000,scaling(surf,feat[(int)139719.0],24)));
+	s = s+0.2971280623*(evaluate2(-1729.4726562500,1.000000,scaling(surf,feat[(int)102956.0],24)));
+	s = s+0.3283367275*(evaluate2(10786.6362304688,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3398630213*(evaluate2(-7466.4345703125,-1.000000,scaling(surf,feat[(int)20307.0],24)));
+	s = s+0.3402661294*(evaluate2(66.6142578125,-1.000000,scaling(surf,feat[(int)56601.0],24)));
+	s = s+0.3212567263*(evaluate2(-648397.4375000000,-1.000000,scaling(surf,feat[(int)43390.0],24)));
+	s = s+0.3378948466*(evaluate2(-242616.3984375000,-1.000000,scaling(surf,feat[(int)123334.0],24)));
+	s = s+0.3069062830*(evaluate2(-244983.9218750000,1.000000,scaling(surf,feat[(int)79908.0],24)));
+	s = s+0.3177856960*(evaluate2(260819.2812500000,1.000000,scaling(surf,feat[(int)61598.0],24)));
+	s = s+0.3310358465*(evaluate2(-22741.6318359375,-1.000000,scaling(surf,feat[(int)126968.0],24)));
+	s = s+0.1928232848*(evaluate2(344347.7500000000,1.000000,scaling(surf,feat[(int)121463.0],24)));
+	s = s+0.2454076890*(evaluate2(-12376.1406250000,-1.000000,scaling(surf,feat[(int)90198.0],24)));
+	s = s+0.2807313770*(evaluate2(137226.7500000000,1.000000,scaling(surf,feat[(int)6616.0],24)));
+	s = s+0.2937919202*(evaluate2(-55570.6035156250,1.000000,scaling(surf,feat[(int)85837.0],24)));
+	s = s+0.2766382749*(evaluate2(-163109.9140625000,-1.000000,scaling(surf,feat[(int)90854.0],24)));
+	s = s+0.2848532721*(evaluate2(-16371.7431640625,-1.000000,scaling(surf,feat[(int)22818.0],24)));
+	s = s+0.3103580271*(evaluate2(34924.1855468750,1.000000,scaling(surf,feat[(int)147608.0],24)));
+	s = s+0.3385338999*(evaluate2(-48551.2539062500,-1.000000,scaling(surf,feat[(int)146642.0],24)));
+	s = s+0.3278017337*(evaluate2(20584.7587890625,1.000000,scaling(surf,feat[(int)12115.0],24)));
+	s = s+0.3334402571*(evaluate2(27943.2880859375,-1.000000,scaling(surf,feat[(int)128250.0],24)));
+	s = s+0.3095847971*(evaluate2(52218.5156250000,1.000000,scaling(surf,feat[(int)161935.0],24)));
+	s = s+0.3348288761*(evaluate2(29723.1835937500,1.000000,scaling(surf,feat[(int)99609.0],24)));
+	s = s+0.3270171121*(evaluate2(108038.3828125000,-1.000000,scaling(surf,feat[(int)86507.0],24)));
+	s = s+0.3209538599*(evaluate2(248629.9375000000,1.000000,scaling(surf,feat[(int)23774.0],24)));
+	s = s+0.3163757355*(evaluate2(-959.8259277344,1.000000,scaling(surf,feat[(int)105455.0],24)));
+	s = s+0.3211187072*(evaluate2(-165529.4296875000,-1.000000,scaling(surf,feat[(int)21506.0],24)));
+	s = s+0.2971280623*(evaluate2(174910.8437500000,1.000000,scaling(surf,feat[(int)30194.0],24)));
+	s = s+0.3151830660*(evaluate2(-156101.234375000,-1.000000,scaling(surf,feat[(int)125350.000000],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+	
+	s =0;
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	s = s+0.3149770216*(evaluate2(15004.6074218750,1.000000,scaling(surf,feat[(int)29972.0],24)));
+	s = s+0.3201983094*(evaluate2(60.6528320312,1.000000,scaling(surf,feat[(int)105645.0],24)));
+	s = s+0.3308580989*(evaluate2(-201619.4843750000,1.000000,scaling(surf,feat[(int)139719.0],24)));
+	s = s+0.2971280623*(evaluate2(-1729.4726562500,1.000000,scaling(surf,feat[(int)102956.0],24)));
+	s = s+0.3283367275*(evaluate2(10786.6362304688,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3398630213*(evaluate2(-7466.4345703125,-1.000000,scaling(surf,feat[(int)20307.0],24)));
+	s = s+0.3402661294*(evaluate2(66.6142578125,-1.000000,scaling(surf,feat[(int)56601.0],24)));
+	s = s+0.3212567263*(evaluate2(-648397.4375000000,-1.000000,scaling(surf,feat[(int)43390.0],24)));
+	s = s+0.3378948466*(evaluate2(-242616.3984375000,-1.000000,scaling(surf,feat[(int)123334.0],24)));
+	s = s+0.3069062830*(evaluate2(-244983.9218750000,1.000000,scaling(surf,feat[(int)79908.0],24)));
+	s = s+0.3177856960*(evaluate2(260819.2812500000,1.000000,scaling(surf,feat[(int)61598.0],24)));
+	s = s+0.3310358465*(evaluate2(-22741.6318359375,-1.000000,scaling(surf,feat[(int)126968.0],24)));
+	s = s+0.1928232848*(evaluate2(344347.7500000000,1.000000,scaling(surf,feat[(int)121463.0],24)));
+	s = s+0.2454076890*(evaluate2(-12376.1406250000,-1.000000,scaling(surf,feat[(int)90198.0],24)));
+	s = s+0.2807313770*(evaluate2(137226.7500000000,1.000000,scaling(surf,feat[(int)6616.0],24)));
+	s = s+0.2937919202*(evaluate2(-55570.6035156250,1.000000,scaling(surf,feat[(int)85837.0],24)));
+	s = s+0.2766382749*(evaluate2(-163109.9140625000,-1.000000,scaling(surf,feat[(int)90854.0],24)));
+	s = s+0.2848532721*(evaluate2(-16371.7431640625,-1.000000,scaling(surf,feat[(int)22818.0],24)));
+	s = s+0.3103580271*(evaluate2(34924.1855468750,1.000000,scaling(surf,feat[(int)147608.0],24)));
+	s = s+0.3385338999*(evaluate2(-48551.2539062500,-1.000000,scaling(surf,feat[(int)146642.0],24)));
+	s = s+0.3278017337*(evaluate2(20584.7587890625,1.000000,scaling(surf,feat[(int)12115.0],24)));
+	s = s+0.3334402571*(evaluate2(27943.2880859375,-1.000000,scaling(surf,feat[(int)128250.0],24)));
+	s = s+0.3095847971*(evaluate2(52218.5156250000,1.000000,scaling(surf,feat[(int)161935.0],24)));
+	s = s+0.3348288761*(evaluate2(29723.1835937500,1.000000,scaling(surf,feat[(int)99609.0],24)));
+	s = s+0.3270171121*(evaluate2(108038.3828125000,-1.000000,scaling(surf,feat[(int)86507.0],24)));
+	s = s+0.3209538599*(evaluate2(248629.9375000000,1.000000,scaling(surf,feat[(int)23774.0],24)));
+	s = s+0.3163757355*(evaluate2(-959.8259277344,1.000000,scaling(surf,feat[(int)105455.0],24)));
+	s = s+0.3211187072*(evaluate2(-165529.4296875000,-1.000000,scaling(surf,feat[(int)21506.0],24)));
+	s = s+0.2971280623*(evaluate2(174910.8437500000,1.000000,scaling(surf,feat[(int)30194.0],24)));
+	s = s+0.3151830660*(evaluate2(-156101.234375000,-1.000000,scaling(surf,feat[(int)125350.000000],24)));
+	s = s+0.3384683476*(evaluate2(-934752.0312500000,-1.000000,scaling(surf,feat[(int)43391.000000],24)));
+	s = s+0.3412882462*(evaluate2(156361.828125000,-1.000000,scaling(surf,feat[(int)140357.000000],24)));
+	s = s+0.3224412466*(evaluate2(-191149.101562500,-1.000000,scaling(surf,feat[(int)54390.000000],24)));
+	s = s+0.3228423696*(evaluate2(-123.5742187500,-1.000000,scaling(surf,feat[(int)87201.000000],24)));
+	s = s+0.3259576821*(evaluate2(-35857.9257812500,-1.000000,scaling(surf,feat[(int)160239.000000],24)));
+	s = s+0.3436134819*(evaluate2(-95632.5898437500,1.000000,scaling(surf,feat[(int)121622.000000],24)));
+	s = s+0.3278205237*(evaluate2(-4144.4094238281,-1.000000,scaling(surf,feat[(int)93576.000000],24)));
+	s = s+0.3509143200*(evaluate2(157292.0156250000,1.000000,scaling(surf,feat[(int)12809.000000],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+	
+	s =0;
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	s = s+0.3149770216*(evaluate2(15004.6074218750,1.000000,scaling(surf,feat[(int)29972.0],24)));
+	s = s+0.3201983094*(evaluate2(60.6528320312,1.000000,scaling(surf,feat[(int)105645.0],24)));
+	s = s+0.3308580989*(evaluate2(-201619.4843750000,1.000000,scaling(surf,feat[(int)139719.0],24)));
+	s = s+0.2971280623*(evaluate2(-1729.4726562500,1.000000,scaling(surf,feat[(int)102956.0],24)));
+	s = s+0.3283367275*(evaluate2(10786.6362304688,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3398630213*(evaluate2(-7466.4345703125,-1.000000,scaling(surf,feat[(int)20307.0],24)));
+	s = s+0.3402661294*(evaluate2(66.6142578125,-1.000000,scaling(surf,feat[(int)56601.0],24)));
+	s = s+0.3212567263*(evaluate2(-648397.4375000000,-1.000000,scaling(surf,feat[(int)43390.0],24)));
+	s = s+0.3378948466*(evaluate2(-242616.3984375000,-1.000000,scaling(surf,feat[(int)123334.0],24)));
+	s = s+0.3069062830*(evaluate2(-244983.9218750000,1.000000,scaling(surf,feat[(int)79908.0],24)));
+	s = s+0.3177856960*(evaluate2(260819.2812500000,1.000000,scaling(surf,feat[(int)61598.0],24)));
+	s = s+0.3310358465*(evaluate2(-22741.6318359375,-1.000000,scaling(surf,feat[(int)126968.0],24)));
+	s = s+0.1928232848*(evaluate2(344347.7500000000,1.000000,scaling(surf,feat[(int)121463.0],24)));
+	s = s+0.2454076890*(evaluate2(-12376.1406250000,-1.000000,scaling(surf,feat[(int)90198.0],24)));
+	s = s+0.2807313770*(evaluate2(137226.7500000000,1.000000,scaling(surf,feat[(int)6616.0],24)));
+	s = s+0.2937919202*(evaluate2(-55570.6035156250,1.000000,scaling(surf,feat[(int)85837.0],24)));
+	s = s+0.2766382749*(evaluate2(-163109.9140625000,-1.000000,scaling(surf,feat[(int)90854.0],24)));
+	s = s+0.2848532721*(evaluate2(-16371.7431640625,-1.000000,scaling(surf,feat[(int)22818.0],24)));
+	s = s+0.3103580271*(evaluate2(34924.1855468750,1.000000,scaling(surf,feat[(int)147608.0],24)));
+	s = s+0.3385338999*(evaluate2(-48551.2539062500,-1.000000,scaling(surf,feat[(int)146642.0],24)));
+	s = s+0.3278017337*(evaluate2(20584.7587890625,1.000000,scaling(surf,feat[(int)12115.0],24)));
+	s = s+0.3334402571*(evaluate2(27943.2880859375,-1.000000,scaling(surf,feat[(int)128250.0],24)));
+	s = s+0.3095847971*(evaluate2(52218.5156250000,1.000000,scaling(surf,feat[(int)161935.0],24)));
+	s = s+0.3348288761*(evaluate2(29723.1835937500,1.000000,scaling(surf,feat[(int)99609.0],24)));
+	s = s+0.3270171121*(evaluate2(108038.3828125000,-1.000000,scaling(surf,feat[(int)86507.0],24)));
+	s = s+0.3209538599*(evaluate2(248629.9375000000,1.000000,scaling(surf,feat[(int)23774.0],24)));
+	s = s+0.3163757355*(evaluate2(-959.8259277344,1.000000,scaling(surf,feat[(int)105455.0],24)));
+	s = s+0.3211187072*(evaluate2(-165529.4296875000,-1.000000,scaling(surf,feat[(int)21506.0],24)));
+	s = s+0.2971280623*(evaluate2(174910.8437500000,1.000000,scaling(surf,feat[(int)30194.0],24)));
+	s = s+0.3151830660*(evaluate2(-156101.234375000,-1.000000,scaling(surf,feat[(int)125350.000000],24)));
+	s = s+0.3384683476*(evaluate2(-934752.0312500000,-1.000000,scaling(surf,feat[(int)43391.000000],24)));
+	s = s+0.3412882462*(evaluate2(156361.828125000,-1.000000,scaling(surf,feat[(int)140357.000000],24)));
+	s = s+0.3224412466*(evaluate2(-191149.101562500,-1.000000,scaling(surf,feat[(int)54390.000000],24)));
+	s = s+0.3228423696*(evaluate2(-123.5742187500,-1.000000,scaling(surf,feat[(int)87201.000000],24)));
+	s = s+0.3259576821*(evaluate2(-35857.9257812500,-1.000000,scaling(surf,feat[(int)160239.000000],24)));
+	s = s+0.3436134819*(evaluate2(-95632.5898437500,1.000000,scaling(surf,feat[(int)121622.000000],24)));
+	s = s+0.3278205237*(evaluate2(-4144.4094238281,-1.000000,scaling(surf,feat[(int)93576.000000],24)));
+	s = s+0.3509143200*(evaluate2(157292.0156250000,1.000000,scaling(surf,feat[(int)12809.000000],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	s = s+0.3295947999*(evaluate2(1376.9604492188,-1.000000,scaling(surf,feat[(int)43199.000000],24)));
+	s = s+0.3430840530*(evaluate2(72596.7109375000,1.000000,scaling(surf,feat[(int)147319.000000],24)));
+	s = s+0.3509979389*(evaluate2(-66.1621093750,-1.000000,scaling(surf,feat[(int)161710.0],24)));
+	s = s+0.3509350683*(evaluate2(63.6138305664,1.000000,scaling(surf,feat[(int)156113.0],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	s = s+0.3295947999*(evaluate2(1376.9604492188,-1.000000,scaling(surf,feat[(int)43199.000000],24)));
+	s = s+0.3430840530*(evaluate2(72596.7109375000,1.000000,scaling(surf,feat[(int)147319.000000],24)));
+	s = s+0.3509979389*(evaluate2(-66.1621093750,-1.000000,scaling(surf,feat[(int)161710.0],24)));
+	s = s+0.3509350683*(evaluate2(63.6138305664,1.000000,scaling(surf,feat[(int)156113.0],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+
+	s =0;
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	s = s+0.3149770216*(evaluate2(15004.6074218750,1.000000,scaling(surf,feat[(int)29972.0],24)));
+	s = s+0.3201983094*(evaluate2(60.6528320312,1.000000,scaling(surf,feat[(int)105645.0],24)));
+	s = s+0.3308580989*(evaluate2(-201619.4843750000,1.000000,scaling(surf,feat[(int)139719.0],24)));
+	s = s+0.2971280623*(evaluate2(-1729.4726562500,1.000000,scaling(surf,feat[(int)102956.0],24)));
+	s = s+0.3283367275*(evaluate2(10786.6362304688,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3398630213*(evaluate2(-7466.4345703125,-1.000000,scaling(surf,feat[(int)20307.0],24)));
+	s = s+0.3402661294*(evaluate2(66.6142578125,-1.000000,scaling(surf,feat[(int)56601.0],24)));
+	s = s+0.3212567263*(evaluate2(-648397.4375000000,-1.000000,scaling(surf,feat[(int)43390.0],24)));
+	s = s+0.3378948466*(evaluate2(-242616.3984375000,-1.000000,scaling(surf,feat[(int)123334.0],24)));
+	s = s+0.3069062830*(evaluate2(-244983.9218750000,1.000000,scaling(surf,feat[(int)79908.0],24)));
+	s = s+0.3177856960*(evaluate2(260819.2812500000,1.000000,scaling(surf,feat[(int)61598.0],24)));
+	s = s+0.3310358465*(evaluate2(-22741.6318359375,-1.000000,scaling(surf,feat[(int)126968.0],24)));
+	s = s+0.1928232848*(evaluate2(344347.7500000000,1.000000,scaling(surf,feat[(int)121463.0],24)));
+	s = s+0.2454076890*(evaluate2(-12376.1406250000,-1.000000,scaling(surf,feat[(int)90198.0],24)));
+	s = s+0.2807313770*(evaluate2(137226.7500000000,1.000000,scaling(surf,feat[(int)6616.0],24)));
+	s = s+0.2937919202*(evaluate2(-55570.6035156250,1.000000,scaling(surf,feat[(int)85837.0],24)));
+	s = s+0.2766382749*(evaluate2(-163109.9140625000,-1.000000,scaling(surf,feat[(int)90854.0],24)));
+	s = s+0.2848532721*(evaluate2(-16371.7431640625,-1.000000,scaling(surf,feat[(int)22818.0],24)));
+	s = s+0.3103580271*(evaluate2(34924.1855468750,1.000000,scaling(surf,feat[(int)147608.0],24)));
+	s = s+0.3385338999*(evaluate2(-48551.2539062500,-1.000000,scaling(surf,feat[(int)146642.0],24)));
+	s = s+0.3278017337*(evaluate2(20584.7587890625,1.000000,scaling(surf,feat[(int)12115.0],24)));
+	s = s+0.3334402571*(evaluate2(27943.2880859375,-1.000000,scaling(surf,feat[(int)128250.0],24)));
+	s = s+0.3095847971*(evaluate2(52218.5156250000,1.000000,scaling(surf,feat[(int)161935.0],24)));
+	s = s+0.3348288761*(evaluate2(29723.1835937500,1.000000,scaling(surf,feat[(int)99609.0],24)));
+	s = s+0.3270171121*(evaluate2(108038.3828125000,-1.000000,scaling(surf,feat[(int)86507.0],24)));
+	s = s+0.3209538599*(evaluate2(248629.9375000000,1.000000,scaling(surf,feat[(int)23774.0],24)));
+	s = s+0.3163757355*(evaluate2(-959.8259277344,1.000000,scaling(surf,feat[(int)105455.0],24)));
+	s = s+0.3211187072*(evaluate2(-165529.4296875000,-1.000000,scaling(surf,feat[(int)21506.0],24)));
+	s = s+0.2971280623*(evaluate2(174910.8437500000,1.000000,scaling(surf,feat[(int)30194.0],24)));
+	s = s+0.3151830660*(evaluate2(-156101.234375000,-1.000000,scaling(surf,feat[(int)125350.000000],24)));
+	s = s+0.3384683476*(evaluate2(-934752.0312500000,-1.000000,scaling(surf,feat[(int)43391.000000],24)));
+	s = s+0.3412882462*(evaluate2(156361.828125000,-1.000000,scaling(surf,feat[(int)140357.000000],24)));
+	s = s+0.3224412466*(evaluate2(-191149.101562500,-1.000000,scaling(surf,feat[(int)54390.000000],24)));
+	s = s+0.3228423696*(evaluate2(-123.5742187500,-1.000000,scaling(surf,feat[(int)87201.000000],24)));
+	s = s+0.3259576821*(evaluate2(-35857.9257812500,-1.000000,scaling(surf,feat[(int)160239.000000],24)));
+	s = s+0.3436134819*(evaluate2(-95632.5898437500,1.000000,scaling(surf,feat[(int)121622.000000],24)));
+	s = s+0.3278205237*(evaluate2(-4144.4094238281,-1.000000,scaling(surf,feat[(int)93576.000000],24)));
+	s = s+0.3509143200*(evaluate2(157292.0156250000,1.000000,scaling(surf,feat[(int)12809.000000],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	s = s+0.3295947999*(evaluate2(1376.9604492188,-1.000000,scaling(surf,feat[(int)43199.000000],24)));
+	s = s+0.3430840530*(evaluate2(72596.7109375000,1.000000,scaling(surf,feat[(int)147319.000000],24)));
+	s = s+0.3509979389*(evaluate2(-66.1621093750,-1.000000,scaling(surf,feat[(int)161710.0],24)));
+	s = s+0.3509350683*(evaluate2(63.6138305664,1.000000,scaling(surf,feat[(int)156113.0],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	s = s+0.3295947999*(evaluate2(1376.9604492188,-1.000000,scaling(surf,feat[(int)43199.000000],24)));
+	s = s+0.3430840530*(evaluate2(72596.7109375000,1.000000,scaling(surf,feat[(int)147319.000000],24)));
+	s = s+0.3509979389*(evaluate2(-66.1621093750,-1.000000,scaling(surf,feat[(int)161710.0],24)));
+	s = s+0.3509350683*(evaluate2(63.6138305664,1.000000,scaling(surf,feat[(int)156113.0],24)));	
+	s = s+0.3446087759*(evaluate2(80.9765625000,1.000000,scaling(surf,feat[(int)103080.000000],24)));
+	s = s+0.3596015664*(evaluate2(8003.1298828125,1.000000,scaling(surf,feat[(int)88944.0],24)));
+	s = s+0.3528729277*(evaluate2(1768.4831542969,-1.000000,scaling(surf,feat[(int)75621.000000],24)));
+	s = s+0.3459865467*(evaluate2(82784.4843750000,1.000000,scaling(surf,feat[(int)160241.0],24)));
+	s = s+0.3303353043*(evaluate2(20339.1796875000,-1.000000,scaling(surf,feat[(int)151190.0],24)));
+	s = s+0.3561070248*(evaluate2(-3641.2100830078,1.000000,scaling(surf,feat[(int)103146.000000],24)));
+	s = s+0.2260000000*(evaluate2(326748.703125000,1.000000,scaling(surf,feat[(int)121449.000000],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+
+	s = 0;
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	s = s+0.3149770216*(evaluate2(15004.6074218750,1.000000,scaling(surf,feat[(int)29972.0],24)));
+	s = s+0.3201983094*(evaluate2(60.6528320312,1.000000,scaling(surf,feat[(int)105645.0],24)));
+	s = s+0.3308580989*(evaluate2(-201619.4843750000,1.000000,scaling(surf,feat[(int)139719.0],24)));
+	s = s+0.2971280623*(evaluate2(-1729.4726562500,1.000000,scaling(surf,feat[(int)102956.0],24)));
+	s = s+0.3283367275*(evaluate2(10786.6362304688,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3398630213*(evaluate2(-7466.4345703125,-1.000000,scaling(surf,feat[(int)20307.0],24)));
+	s = s+0.3402661294*(evaluate2(66.6142578125,-1.000000,scaling(surf,feat[(int)56601.0],24)));
+	s = s+0.3212567263*(evaluate2(-648397.4375000000,-1.000000,scaling(surf,feat[(int)43390.0],24)));
+	s = s+0.3378948466*(evaluate2(-242616.3984375000,-1.000000,scaling(surf,feat[(int)123334.0],24)));
+	s = s+0.3069062830*(evaluate2(-244983.9218750000,1.000000,scaling(surf,feat[(int)79908.0],24)));
+	s = s+0.3177856960*(evaluate2(260819.2812500000,1.000000,scaling(surf,feat[(int)61598.0],24)));
+	s = s+0.3310358465*(evaluate2(-22741.6318359375,-1.000000,scaling(surf,feat[(int)126968.0],24)));
+	s = s+0.1928232848*(evaluate2(344347.7500000000,1.000000,scaling(surf,feat[(int)121463.0],24)));
+	s = s+0.2454076890*(evaluate2(-12376.1406250000,-1.000000,scaling(surf,feat[(int)90198.0],24)));
+	s = s+0.2807313770*(evaluate2(137226.7500000000,1.000000,scaling(surf,feat[(int)6616.0],24)));
+	s = s+0.2937919202*(evaluate2(-55570.6035156250,1.000000,scaling(surf,feat[(int)85837.0],24)));
+	s = s+0.2766382749*(evaluate2(-163109.9140625000,-1.000000,scaling(surf,feat[(int)90854.0],24)));
+	s = s+0.2848532721*(evaluate2(-16371.7431640625,-1.000000,scaling(surf,feat[(int)22818.0],24)));
+	s = s+0.3103580271*(evaluate2(34924.1855468750,1.000000,scaling(surf,feat[(int)147608.0],24)));
+	s = s+0.3385338999*(evaluate2(-48551.2539062500,-1.000000,scaling(surf,feat[(int)146642.0],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+
+	s = 0;
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	s = s+0.3149770216*(evaluate2(15004.6074218750,1.000000,scaling(surf,feat[(int)29972.0],24)));
+	s = s+0.3201983094*(evaluate2(60.6528320312,1.000000,scaling(surf,feat[(int)105645.0],24)));
+	s = s+0.3308580989*(evaluate2(-201619.4843750000,1.000000,scaling(surf,feat[(int)139719.0],24)));
+	s = s+0.2971280623*(evaluate2(-1729.4726562500,1.000000,scaling(surf,feat[(int)102956.0],24)));
+	s = s+0.3283367275*(evaluate2(10786.6362304688,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3398630213*(evaluate2(-7466.4345703125,-1.000000,scaling(surf,feat[(int)20307.0],24)));
+	s = s+0.3402661294*(evaluate2(66.6142578125,-1.000000,scaling(surf,feat[(int)56601.0],24)));
+	s = s+0.3212567263*(evaluate2(-648397.4375000000,-1.000000,scaling(surf,feat[(int)43390.0],24)));
+	s = s+0.3378948466*(evaluate2(-242616.3984375000,-1.000000,scaling(surf,feat[(int)123334.0],24)));
+	s = s+0.3069062830*(evaluate2(-244983.9218750000,1.000000,scaling(surf,feat[(int)79908.0],24)));
+	s = s+0.3177856960*(evaluate2(260819.2812500000,1.000000,scaling(surf,feat[(int)61598.0],24)));
+	s = s+0.3310358465*(evaluate2(-22741.6318359375,-1.000000,scaling(surf,feat[(int)126968.0],24)));
+	s = s+0.1928232848*(evaluate2(344347.7500000000,1.000000,scaling(surf,feat[(int)121463.0],24)));
+	s = s+0.2454076890*(evaluate2(-12376.1406250000,-1.000000,scaling(surf,feat[(int)90198.0],24)));
+	s = s+0.2807313770*(evaluate2(137226.7500000000,1.000000,scaling(surf,feat[(int)6616.0],24)));
+	s = s+0.2937919202*(evaluate2(-55570.6035156250,1.000000,scaling(surf,feat[(int)85837.0],24)));
+	s = s+0.2766382749*(evaluate2(-163109.9140625000,-1.000000,scaling(surf,feat[(int)90854.0],24)));
+	s = s+0.2848532721*(evaluate2(-16371.7431640625,-1.000000,scaling(surf,feat[(int)22818.0],24)));
+	s = s+0.3103580271*(evaluate2(34924.1855468750,1.000000,scaling(surf,feat[(int)147608.0],24)));
+	s = s+0.3385338999*(evaluate2(-48551.2539062500,-1.000000,scaling(surf,feat[(int)146642.0],24)));
+	s = s+0.3278017337*(evaluate2(20584.7587890625,1.000000,scaling(surf,feat[(int)12115.0],24)));
+	s = s+0.3334402571*(evaluate2(27943.2880859375,-1.000000,scaling(surf,feat[(int)128250.0],24)));
+	s = s+0.3095847971*(evaluate2(52218.5156250000,1.000000,scaling(surf,feat[(int)161935.0],24)));
+	s = s+0.3348288761*(evaluate2(29723.1835937500,1.000000,scaling(surf,feat[(int)99609.0],24)));
+	s = s+0.3270171121*(evaluate2(108038.3828125000,-1.000000,scaling(surf,feat[(int)86507.0],24)));
+	s = s+0.3209538599*(evaluate2(248629.9375000000,1.000000,scaling(surf,feat[(int)23774.0],24)));
+	s = s+0.3163757355*(evaluate2(-959.8259277344,1.000000,scaling(surf,feat[(int)105455.0],24)));
+	s = s+0.3211187072*(evaluate2(-165529.4296875000,-1.000000,scaling(surf,feat[(int)21506.0],24)));
+	s = s+0.2971280623*(evaluate2(174910.8437500000,1.000000,scaling(surf,feat[(int)30194.0],24)));
+	s = s+0.3151830660*(evaluate2(-156101.234375000,-1.000000,scaling(surf,feat[(int)125350.000000],24)));
+	s = s+0.3384683476*(evaluate2(-934752.0312500000,-1.000000,scaling(surf,feat[(int)43391.000000],24)));
+	s = s+0.3412882462*(evaluate2(156361.828125000,-1.000000,scaling(surf,feat[(int)140357.000000],24)));
+	s = s+0.3224412466*(evaluate2(-191149.101562500,-1.000000,scaling(surf,feat[(int)54390.000000],24)));
+	s = s+0.3228423696*(evaluate2(-123.5742187500,-1.000000,scaling(surf,feat[(int)87201.000000],24)));
+	s = s+0.3259576821*(evaluate2(-35857.9257812500,-1.000000,scaling(surf,feat[(int)160239.000000],24)));
+	s = s+0.3436134819*(evaluate2(-95632.5898437500,1.000000,scaling(surf,feat[(int)121622.000000],24)));
+	s = s+0.3278205237*(evaluate2(-4144.4094238281,-1.000000,scaling(surf,feat[(int)93576.000000],24)));
+	s = s+0.3509143200*(evaluate2(157292.0156250000,1.000000,scaling(surf,feat[(int)12809.000000],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	s = s+0.3295947999*(evaluate2(1376.9604492188,-1.000000,scaling(surf,feat[(int)43199.000000],24)));
+	s = s+0.3430840530*(evaluate2(72596.7109375000,1.000000,scaling(surf,feat[(int)147319.000000],24)));
+	s = s+0.3509979389*(evaluate2(-66.1621093750,-1.000000,scaling(surf,feat[(int)161710.0],24)));
+	s = s+0.3509350683*(evaluate2(63.6138305664,1.000000,scaling(surf,feat[(int)156113.0],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	s = s+0.3295947999*(evaluate2(1376.9604492188,-1.000000,scaling(surf,feat[(int)43199.000000],24)));
+	s = s+0.3430840530*(evaluate2(72596.7109375000,1.000000,scaling(surf,feat[(int)147319.000000],24)));
+	s = s+0.3509979389*(evaluate2(-66.1621093750,-1.000000,scaling(surf,feat[(int)161710.0],24)));
+	s = s+0.3509350683*(evaluate2(63.6138305664,1.000000,scaling(surf,feat[(int)156113.0],24)));
+	s = s+0.3446087759*(evaluate2(80.9765625000,1.000000,scaling(surf,feat[(int)103080.000000],24)));
+	s = s+0.3596015664*(evaluate2(8003.1298828125,1.000000,scaling(surf,feat[(int)88944.0],24)));
+	s = s+0.3528729277*(evaluate2(1768.4831542969,-1.000000,scaling(surf,feat[(int)75621.000000],24)));
+	s = s+0.3459865467*(evaluate2(82784.4843750000,1.000000,scaling(surf,feat[(int)160241.0],24)));
+	s = s+0.3303353043*(evaluate2(20339.1796875000,-1.000000,scaling(surf,feat[(int)151190.0],24)));
+	s = s+0.3561070248*(evaluate2(-3641.2100830078,1.000000,scaling(surf,feat[(int)103146.000000],24)));
+	s = s+0.2260000000*(evaluate2(326748.703125000,1.000000,scaling(surf,feat[(int)121449.000000],24)));
+	s = s+0.2732072214*(evaluate2(-149137.1484375000,-1.000000,scaling(surf,feat[(int)47547.000000],24)));
+	s = s+0.2898135291*(evaluate2(-35913.8320312500,-1.000000,scaling(surf,feat[(int)91943.000000],24)));
+	s = s+0.2960439102*(evaluate2(-242334.5937500000,1.000000,scaling(surf,feat[(int)79227.000000],24)));
+	s = s+0.3187789869*(evaluate2(-134162.0546875000,-1.000000,scaling(surf,feat[(int)155432.000000],24)));
+	s = s+0.3201766622*(evaluate2(-2618.4570312500,-1.000000,scaling(surf,feat[(int)142284.000000],24)));
+	s = s+0.3379131695*(evaluate2(-20448.4082031250,-1.000000,scaling(surf,feat[(int)14593.000000],24)));
+	s = s+0.3400319652*(evaluate2(-87320.6679687500,-1.000000,scaling(surf,feat[(int)40274.000000],24)));
+	s = s+0.3165849378*(evaluate2(-15220.2636718750,-1.000000,scaling(surf,feat[(int)86425.000000],24)));
+	s = s+0.3252613995*(evaluate2(-106980.4531250000,-1.000000,scaling(surf,feat[(int)54494.000000],24)));
+	s = s+0.3092849187*(evaluate2(-263610.3281250000,1.000000,scaling(surf,feat[(int)91643.000000],24)));
+	s = s+0.3172423263*(evaluate2(175985.5000000000,-1.000000,scaling(surf,feat[(int)25799.000000],24)));
+	s = s+0.3090247427*(evaluate2(12123.2353515625,-1.000000,scaling(surf,feat[(int)110284.000000],24)));
+	s = s+0.3254540184*(evaluate2(-93302.234375000,-1.000000,scaling(surf,feat[(int)159799.000000],24)));
+	s = s+0.3347800436*(evaluate2(-0.0029296875,-1.000000,scaling(surf,feat[(int)95528.000000],24)));
+	s = s+0.3393974157*(evaluate2(132797.867187500,1.000000,scaling(surf,feat[(int)6913.000000],24)));
+	s = s+0.3224700949*(evaluate2(-2520.4072265625,1.000000,scaling(surf,feat[(int)106430.000000],24)));
+	s = s+0.3396570479*(evaluate2(63.6142578125,1.000000,scaling(surf,feat[(int)161632.000000],24)));
+	s = s+0.3364152361*(evaluate2(-152088.742187500,-1.000000,scaling(surf,feat[(int)127142.000000],24)));
+	s = s+0.3318304060*(evaluate2(7269.3359375000,-1.000000,scaling(surf,feat[(int)71820.000000],24)));
+	s = s+0.3323748654*(evaluate2(-126224.1171875000,-1.000000,scaling(surf,feat[(int)465.000000],24)));
+	s = s+0.3344496067*(evaluate2(-1692.089843750,1.000000,scaling(surf,feat[(int)39252.000000],24)));
+	s = s+0.3481869905*(evaluate2(43323.1953125000,1.000000,scaling(surf,feat[(int)161996.000000],24)));
+	s = s+0.3296427806*(evaluate2(-2056.1044921875,1.000000,scaling(surf,feat[(int)110475.000000],24)));
+	s = s+0.3555937196*(evaluate2(64875.9804687500,1.000000,scaling(surf,feat[(int)85001.000000],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+	
+	s = 0;
+	s = s+0.1545*(evaluate2(262521.703125,1.000000,scaling(surf,feat[(int)121589.0],24)));
+	s = s+0.1706144657*(evaluate2(-9311.8671875000,-1.000000,scaling(surf,feat[(int)90873.0],24)));
+	s = s+0.2320851203*(evaluate2(50935.9335937500,1.000000,scaling(surf,feat[(int)148988.0],24)));
+	s = s+0.2402345193*(evaluate2(-171806.4062500000,-1.000000,scaling(surf,feat[(int)124635.0],24)));
+	s = s+0.2573262077*(evaluate2(-223414.2265625000,1.000000,scaling(surf,feat[(int)83007.0],24)));
+	s = s+0.2470397812*(evaluate2(125043.9375000000,1.000000,scaling(surf,feat[(int)9781.0],24)));
+	s = s+0.2830593091*(evaluate2(-2979.5800781250,-1.000000,scaling(surf,feat[(int)87795.0],24)));
+	s = s+0.2488317873*(evaluate2(-13465.3632812500,-1.000000,scaling(surf,feat[(int)20328.0],24)));
+	s = s+0.2914266584*(evaluate2(23895.0273437500,1.000000,scaling(surf,feat[(int)161974.0],24)));
+	s = s+0.3203899683*(evaluate2(57346.7871093750,1.000000,scaling(surf,feat[(int)144539.0],24)));
+	s = s+0.3310000084*(evaluate2(143205.3984375000,-1.000000,scaling(surf,feat[(int)140235.0],24)));
+	s = s+0.2930824553*(evaluate2(24379.5390625000,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3198077894*(evaluate2(-642.8740234375,-1.000000,scaling(surf,feat[(int)92151.0],24)));
+	s = s+0.1715164319*(evaluate2(288491.4843750000,1.000000,scaling(surf,feat[(int)121582.0],24)));
+	s = s+0.2306325082*(evaluate2(-65480.3085937500,-1.000000,scaling(surf,feat[(int)90089.0],24)));
+	s = s+0.2478790999*(evaluate2(-47963.5527343750,-1.000000,scaling(surf,feat[(int)14434.0],24)));
+	s = s+0.2588687601*(evaluate2(-17401.6796875000,-1.000000,scaling(surf,feat[(int)160515.0],24)));
+	s = s+0.2589874892*(evaluate2(-189683.3437500000,1.000000,scaling(surf,feat[(int)82527.0],24)));
+	s = s+0.2842598146*(evaluate2(-42751.1445312500,-1.000000,scaling(surf,feat[(int)161800.0],24)));
+	s = s+0.2812122660*(evaluate2(-57602.6406250000,-1.000000,scaling(surf,feat[(int)95793.0],24)));
+	s = s+0.3066515741*(evaluate2(-17143.0234375000,-1.000000,scaling(surf,feat[(int)142169.0],24)));
+	s = s+0.3149770216*(evaluate2(15004.6074218750,1.000000,scaling(surf,feat[(int)29972.0],24)));
+	s = s+0.3201983094*(evaluate2(60.6528320312,1.000000,scaling(surf,feat[(int)105645.0],24)));
+	s = s+0.3308580989*(evaluate2(-201619.4843750000,1.000000,scaling(surf,feat[(int)139719.0],24)));
+	s = s+0.2971280623*(evaluate2(-1729.4726562500,1.000000,scaling(surf,feat[(int)102956.0],24)));
+	s = s+0.3283367275*(evaluate2(10786.6362304688,1.000000,scaling(surf,feat[(int)160259.0],24)));
+	s = s+0.3398630213*(evaluate2(-7466.4345703125,-1.000000,scaling(surf,feat[(int)20307.0],24)));
+	s = s+0.3402661294*(evaluate2(66.6142578125,-1.000000,scaling(surf,feat[(int)56601.0],24)));
+	s = s+0.3212567263*(evaluate2(-648397.4375000000,-1.000000,scaling(surf,feat[(int)43390.0],24)));
+	s = s+0.3378948466*(evaluate2(-242616.3984375000,-1.000000,scaling(surf,feat[(int)123334.0],24)));
+	s = s+0.3069062830*(evaluate2(-244983.9218750000,1.000000,scaling(surf,feat[(int)79908.0],24)));
+	s = s+0.3177856960*(evaluate2(260819.2812500000,1.000000,scaling(surf,feat[(int)61598.0],24)));
+	s = s+0.3310358465*(evaluate2(-22741.6318359375,-1.000000,scaling(surf,feat[(int)126968.0],24)));
+	s = s+0.1928232848*(evaluate2(344347.7500000000,1.000000,scaling(surf,feat[(int)121463.0],24)));
+	s = s+0.2454076890*(evaluate2(-12376.1406250000,-1.000000,scaling(surf,feat[(int)90198.0],24)));
+	s = s+0.2807313770*(evaluate2(137226.7500000000,1.000000,scaling(surf,feat[(int)6616.0],24)));
+	s = s+0.2937919202*(evaluate2(-55570.6035156250,1.000000,scaling(surf,feat[(int)85837.0],24)));
+	s = s+0.2766382749*(evaluate2(-163109.9140625000,-1.000000,scaling(surf,feat[(int)90854.0],24)));
+	s = s+0.2848532721*(evaluate2(-16371.7431640625,-1.000000,scaling(surf,feat[(int)22818.0],24)));
+	s = s+0.3103580271*(evaluate2(34924.1855468750,1.000000,scaling(surf,feat[(int)147608.0],24)));
+	s = s+0.3385338999*(evaluate2(-48551.2539062500,-1.000000,scaling(surf,feat[(int)146642.0],24)));
+	s = s+0.3278017337*(evaluate2(20584.7587890625,1.000000,scaling(surf,feat[(int)12115.0],24)));
+	s = s+0.3334402571*(evaluate2(27943.2880859375,-1.000000,scaling(surf,feat[(int)128250.0],24)));
+	s = s+0.3095847971*(evaluate2(52218.5156250000,1.000000,scaling(surf,feat[(int)161935.0],24)));
+	s = s+0.3348288761*(evaluate2(29723.1835937500,1.000000,scaling(surf,feat[(int)99609.0],24)));
+	s = s+0.3270171121*(evaluate2(108038.3828125000,-1.000000,scaling(surf,feat[(int)86507.0],24)));
+	s = s+0.3209538599*(evaluate2(248629.9375000000,1.000000,scaling(surf,feat[(int)23774.0],24)));
+	s = s+0.3163757355*(evaluate2(-959.8259277344,1.000000,scaling(surf,feat[(int)105455.0],24)));
+	s = s+0.3211187072*(evaluate2(-165529.4296875000,-1.000000,scaling(surf,feat[(int)21506.0],24)));
+	s = s+0.2971280623*(evaluate2(174910.8437500000,1.000000,scaling(surf,feat[(int)30194.0],24)));
+	s = s+0.3151830660*(evaluate2(-156101.234375000,-1.000000,scaling(surf,feat[(int)125350.000000],24)));
+	s = s+0.3384683476*(evaluate2(-934752.0312500000,-1.000000,scaling(surf,feat[(int)43391.000000],24)));
+	s = s+0.3412882462*(evaluate2(156361.828125000,-1.000000,scaling(surf,feat[(int)140357.000000],24)));
+	s = s+0.3224412466*(evaluate2(-191149.101562500,-1.000000,scaling(surf,feat[(int)54390.000000],24)));
+	s = s+0.3228423696*(evaluate2(-123.5742187500,-1.000000,scaling(surf,feat[(int)87201.000000],24)));
+	s = s+0.3259576821*(evaluate2(-35857.9257812500,-1.000000,scaling(surf,feat[(int)160239.000000],24)));
+	s = s+0.3436134819*(evaluate2(-95632.5898437500,1.000000,scaling(surf,feat[(int)121622.000000],24)));
+	s = s+0.3278205237*(evaluate2(-4144.4094238281,-1.000000,scaling(surf,feat[(int)93576.000000],24)));
+	s = s+0.3509143200*(evaluate2(157292.0156250000,1.000000,scaling(surf,feat[(int)12809.000000],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	s = s+0.3295947999*(evaluate2(1376.9604492188,-1.000000,scaling(surf,feat[(int)43199.000000],24)));
+	s = s+0.3430840530*(evaluate2(72596.7109375000,1.000000,scaling(surf,feat[(int)147319.000000],24)));
+	s = s+0.3509979389*(evaluate2(-66.1621093750,-1.000000,scaling(surf,feat[(int)161710.0],24)));
+	s = s+0.3509350683*(evaluate2(63.6138305664,1.000000,scaling(surf,feat[(int)156113.0],24)));
+	s = s+0.3432705068*(evaluate2(-21815.4921875000,-1.000000,scaling(surf,feat[(int)95473.000000],24)));
+	s = s+0.3493193744*(evaluate2(40263.1113281250,1.000000,scaling(surf,feat[(int)159614.000000],24)));
+	s = s+0.3295947999*(evaluate2(1376.9604492188,-1.000000,scaling(surf,feat[(int)43199.000000],24)));
+	s = s+0.3430840530*(evaluate2(72596.7109375000,1.000000,scaling(surf,feat[(int)147319.000000],24)));
+	s = s+0.3509979389*(evaluate2(-66.1621093750,-1.000000,scaling(surf,feat[(int)161710.0],24)));
+	s = s+0.3509350683*(evaluate2(63.6138305664,1.000000,scaling(surf,feat[(int)156113.0],24)));
+	s = s+0.3446087759*(evaluate2(80.9765625000,1.000000,scaling(surf,feat[(int)103080.000000],24)));
+	s = s+0.3596015664*(evaluate2(8003.1298828125,1.000000,scaling(surf,feat[(int)88944.0],24)));
+	s = s+0.3528729277*(evaluate2(1768.4831542969,-1.000000,scaling(surf,feat[(int)75621.000000],24)));
+	s = s+0.3459865467*(evaluate2(82784.4843750000,1.000000,scaling(surf,feat[(int)160241.0],24)));
+	s = s+0.3303353043*(evaluate2(20339.1796875000,-1.000000,scaling(surf,feat[(int)151190.0],24)));
+	s = s+0.3561070248*(evaluate2(-3641.2100830078,1.000000,scaling(surf,feat[(int)103146.000000],24)));
+	s = s+0.2260000000*(evaluate2(326748.703125000,1.000000,scaling(surf,feat[(int)121449.000000],24)));
+	s = s+0.2732072214*(evaluate2(-149137.1484375000,-1.000000,scaling(surf,feat[(int)47547.000000],24)));
+	s = s+0.2898135291*(evaluate2(-35913.8320312500,-1.000000,scaling(surf,feat[(int)91943.000000],24)));
+	s = s+0.2960439102*(evaluate2(-242334.5937500000,1.000000,scaling(surf,feat[(int)79227.000000],24)));
+	s = s+0.3187789869*(evaluate2(-134162.0546875000,-1.000000,scaling(surf,feat[(int)155432.000000],24)));
+	s = s+0.3201766622*(evaluate2(-2618.4570312500,-1.000000,scaling(surf,feat[(int)142284.000000],24)));
+	s = s+0.3379131695*(evaluate2(-20448.4082031250,-1.000000,scaling(surf,feat[(int)14593.000000],24)));
+	s = s+0.3400319652*(evaluate2(-87320.6679687500,-1.000000,scaling(surf,feat[(int)40274.000000],24)));
+	s = s+0.3165849378*(evaluate2(-15220.2636718750,-1.000000,scaling(surf,feat[(int)86425.000000],24)));
+	s = s+0.3252613995*(evaluate2(-106980.4531250000,-1.000000,scaling(surf,feat[(int)54494.000000],24)));
+	s = s+0.3092849187*(evaluate2(-263610.3281250000,1.000000,scaling(surf,feat[(int)91643.000000],24)));
+	s = s+0.3172423263*(evaluate2(175985.5000000000,-1.000000,scaling(surf,feat[(int)25799.000000],24)));
+	s = s+0.3090247427*(evaluate2(12123.2353515625,-1.000000,scaling(surf,feat[(int)110284.000000],24)));
+	s = s+0.3254540184*(evaluate2(-93302.234375000,-1.000000,scaling(surf,feat[(int)159799.000000],24)));
+	s = s+0.3347800436*(evaluate2(-0.0029296875,-1.000000,scaling(surf,feat[(int)95528.000000],24)));
+	s = s+0.3393974157*(evaluate2(132797.867187500,1.000000,scaling(surf,feat[(int)6913.000000],24)));
+	s = s+0.3224700949*(evaluate2(-2520.4072265625,1.000000,scaling(surf,feat[(int)106430.000000],24)));
+	s = s+0.3396570479*(evaluate2(63.6142578125,1.000000,scaling(surf,feat[(int)161632.000000],24)));
+	s = s+0.3364152361*(evaluate2(-152088.742187500,-1.000000,scaling(surf,feat[(int)127142.000000],24)));
+	s = s+0.3318304060*(evaluate2(7269.3359375000,-1.000000,scaling(surf,feat[(int)71820.000000],24)));
+	s = s+0.3323748654*(evaluate2(-126224.1171875000,-1.000000,scaling(surf,feat[(int)465.000000],24)));
+	s = s+0.3344496067*(evaluate2(-1692.089843750,1.000000,scaling(surf,feat[(int)39252.000000],24)));
+	s = s+0.3481869905*(evaluate2(43323.1953125000,1.000000,scaling(surf,feat[(int)161996.000000],24)));
+	s = s+0.3296427806*(evaluate2(-2056.1044921875,1.000000,scaling(surf,feat[(int)110475.000000],24)));
+	s = s+0.3555937196*(evaluate2(64875.9804687500,1.000000,scaling(surf,feat[(int)85001.000000],24)));
+	s=s+0.3502189631*(evaluate2(1649.7509765625,-1.0,scaling(surf,feat[(int)86970.0],24)));
+	s=s+0.3375397358*(evaluate2(158553.1171875000,1.0,scaling(surf,feat[(int)62982.0],24)));
+	s=s+0.3289556990*(evaluate2(1540.3522949219,-1.0,scaling(surf,feat[(int)111300.0],24)));
+	s=s+0.3550621114*(evaluate2(-77667.1093750000,-1.0,scaling(surf,feat[(int)42590.0],24)));
+	s=s+0.3266422573*(evaluate2(1210.3228759766,-1.0,scaling(surf,feat[(int)98754.0],24)));
+	s=s+0.3266422573*(evaluate2(1210.3228759766,-1.0,scaling(surf,feat[(int)98754.0],24)));
+	s=s+0.3500241501*(evaluate2(-411991.0625000000,-1.0,scaling(surf,feat[(int)47698.0],24)));
+	s=s+0.3370979052*(evaluate2(-12858.0649414062,1.0,scaling(surf,feat[(int)99966.0],24)));
+	s=s+0.3367453767*(evaluate2(205665.1015625000,1.0,scaling(surf,feat[(int)38182.0],24)));
+	s=s+0.3272054961*(evaluate2(26044.8359375000,-1.0,scaling(surf,feat[(int)88687.0],24)));
+	if(s < 0)
+	{
+		return -1;
+	}
+	return 1;
+
+	/*s=s+0.3398084334*(evaluate2(-23199.8974609375,1.0,scaling(surf,feat[(int)80017.0],24)));
+	s=s+0.3349128769*(evaluate2(235309.5312500000,1.0,scaling(surf,feat[(int)29951.0],24)));
+	s=s+0.3390814145*(evaluate2(-18700.4667968750,-1.0,scaling(surf,feat[(int)5170.0],24)));*/
+
 }
 
 void copy()
@@ -1236,41 +1924,40 @@ void cascade(example* arr,float fpr,int l,float gl,float bl)
 void drawEmptyRect(SDL_Surface * surf,int posX, int posY, int width, int length, int R, int G, int B)
 {
 	SDL_Rect ligneHaut;
-	ligneHaut.x = posX-4;
-	ligneHaut.y = posY-4;
+	ligneHaut.x = posX-2;
+	ligneHaut.y = posY-2;
 	ligneHaut.w = length;
-	ligneHaut.h = 4;
+	ligneHaut.h = 2;
  
 	SDL_FillRect(surf, &ligneHaut, SDL_MapRGB(surf->format, R, G, B));
  
 	SDL_Rect ligneDroite;
-	ligneDroite.x = posX+length-4;
-	ligneDroite.y = posY-4;
-	ligneDroite.w = 4;
+	ligneDroite.x = posX+length-2;
+	ligneDroite.y = posY-2;
+	ligneDroite.w = 2;
 	ligneDroite.h = width;
  
 	SDL_FillRect(surf, &ligneDroite, SDL_MapRGB(surf->format, R, G, B));
  
 	SDL_Rect ligneGauche;
-	ligneGauche.x = posX-4;
-	ligneGauche.y = posY-4;
-	ligneGauche.w = 4;
+	ligneGauche.x = posX-2;
+	ligneGauche.y = posY-2;
+	ligneGauche.w = 2;
 	ligneGauche.h = width;
  
 	SDL_FillRect(surf, &ligneGauche, SDL_MapRGB(surf->format, R, G, B));
  
 	SDL_Rect ligneBas;
-	ligneBas.x = posX-4;
-	ligneBas.y = posY+width-4;
+	ligneBas.x = posX-2;
+	ligneBas.y = posY+width-2;
 	ligneBas.w = length;
-	ligneBas.h = 4;
+	ligneBas.h = 2;
  
 	SDL_FillRect(surf, &ligneBas, SDL_MapRGB(surf->format, R, G, B));
 	SDL_SaveBMP (surf,"tata.bmp");
 }
 void detect(SDL_Surface *surf)
 {
-	int k=0;
 	SDL_Rect R,p;
 	p.x=0;
 	p.y=0;
@@ -1279,8 +1966,6 @@ void detect(SDL_Surface *surf)
 	{
 		for(int j=0; j<surf->h-24; j++)
 		{
-			
-						
 			fenetre=SDL_CreateRGBSurface(SDL_HWSURFACE,24,24,32,0,0,0,0);
 			R.x=i;
 			R.y=j;
@@ -1288,13 +1973,14 @@ void detect(SDL_Surface *surf)
 			R.h=24;
 			SDL_BlitSurface(surf,&R,fenetre,&p);	
 			feature* f=haarr2(fenetre);
-			/*if(eval2(f,0)==1)
+			//if(eval2(f,0,fenetre)==1)
+			if(attentionalCascade(f,fenetre)==1)
 			{
-				drawEmptyRect(surf,0,0,24,24,255,255,0);
-			}*/
+				drawEmptyRect(surf,i,j,24,24,255,255,0);
+			}
 			free(fenetre);
 			free(f);
 		}
 	}
-	printf("%d",k);	
+	//printf("%d",k);	
 }

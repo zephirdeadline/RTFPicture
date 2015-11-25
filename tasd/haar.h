@@ -108,5 +108,7 @@ void cascade(example* arr, float fpr, int l, float gl,float bl);
 void drawEmptyRect(SDL_Surface * surf,int posX, int posY, int width, int length, int R, int G, int B);
 void detect(SDL_Surface *surf);
 int evaluate(float *tab,feature f);
-int eval2(feature *feat,int sl);
+int evaluate2(float tab0, float tab1,int f);
+int eval2(feature *feat, SDL_Surface *surf);
+int attentionalCascade(feature *feat, SDL_Surface *surf);
 #endif
