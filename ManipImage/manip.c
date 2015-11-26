@@ -17,7 +17,7 @@ Uint32 AddMat(struct Matrix *s, int x, int y, int mat[3][3])
   int pix = getpixel(s, x, y);
   SDL_GetRGB(pix, s->format, &r, &g, &b);
   printf("1 pix r = %d\n", g);
-  g=0;
+  
   for(int i = -1; i<2; i++)
   {
     Uint8 tr=0, tg=0, tb=0;
