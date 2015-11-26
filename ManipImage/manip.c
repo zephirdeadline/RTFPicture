@@ -106,9 +106,7 @@ void defPixel(SDL_Surface *surface,int x,int y,Uint32 color)
   }
 }
 
-int mat[3][3]  = {{0,-1,0},
-  {-1, 4,-1},
-  {0,-1,0}};
+
 
 struct Matrix* SDL_to_Matrix(SDL_Surface *s)
 {
@@ -138,6 +136,9 @@ struct Matrix* SDL_to_Matrix(SDL_Surface *s)
 }
 
 
+int mat[3][3]  = {{0,1,0},
+  {0, 0,0},
+  {0,0,0}};
 struct Matrix* Init_Mat(int w, int h)
 {
   struct Matrix *s = malloc(sizeof(s));
@@ -151,10 +152,12 @@ Uint32 Add(SDL_Surface *s, int x, int y, int mat[3][3])
 {
   Uint8 r=0, g=0, b=0;
 
+
   Uint32 pix = getpixel(s, x, y);
   SDL_GetRGB(pix, s->format, &r, &g, &b);
   printf("1 pix r = %d\n", g);
   g=0;
+
   for(int i = -1; i<2; i++)
   {
     Uint8 tr=0, tg=0, tb=0;
@@ -170,9 +173,11 @@ Uint32 Add(SDL_Surface *s, int x, int y, int mat[3][3])
       b += mat[j+1][i+1]*tb;
       printf("rrr pix r = %d* %d: %d\n", tg, mat[j+1][i+1], g);
 
+     // pix+=mat[j+1][i+1]*temp;
     }
   }
-  printf("\n2 pix r = %d\n", g);
+  //printf("\n2 pix r = %d\n", pix);
+
   pix = SDL_MapRGB(s->format, r, g, b);
   return pix;
 }
@@ -240,7 +245,10 @@ SDL_Surface* BuildTest(SDL_Surface *s)
 
 int main()
 {
+SDL_Surface *tmp = SDL_CreateRGBSurface(SDL_HWSURFACE, 5, 5, 32, 0, 0, 0, 0);
+
   SDL_Surface *s1 = IMG_Load("img.jpg");
+
   SDL_Surface *s = BuildTest(s1); 
   struct Matrix *m = SDL_to_Matrix(s) 
   print(s);

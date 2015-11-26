@@ -22,7 +22,11 @@ int main()
   SDL_SaveBMP(SdlGoToGrey(Diff(IMG_Load("moi1.JPG"), Moyenne(tab, 4))), "testDiff.bmp");
 =======
   SDL_SaveBMP(Diff(IMG_Load("lucas1.jpg"), IMG_Load("test.bmp")), "testDiff.bmp");
+<<<<<<< HEAD
 >>>>>>> 11359408af878fa60deb5ea139eb4cfdfffa7589
+=======
+>>>>>>> 482cdc528a61448e1047b686a6972f13d58a78f8
+>>>>>>> master
   return 0;
 }
 
