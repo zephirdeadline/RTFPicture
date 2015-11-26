@@ -15,9 +15,9 @@ int main()
   goToGrey(tab[2] = IMG_Load("moi3.JPG"));
   goToGrey(tab[3] = IMG_Load("moi4.JPG"));
   SDL_SaveBMP(tab[0], "testbefore.bmp");
-  SDL_SaveBMP(Moyenne(tab, 4), "test.bmp");
+  SDL_SaveBMP(SdlGoToGrey(Moyenne(tab, 4)), "test.bmp");
   
-  SDL_SaveBMP(Diff(IMG_Load("moi1.JPG"), IMG_Load("test.bmp")), "testDiff.bmp");
+  SDL_SaveBMP(SdlGoToGrey(Diff(IMG_Load("moi1.JPG"), Moyenne(tab, 4))), "testDiff.bmp");
   return 0;
 }
 

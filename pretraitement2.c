@@ -94,6 +94,36 @@ case 4:
 break;
 }
 }
+
+SDL_Surface* SdlGoToGrey(SDL_Surface * surface)
+{
+	SDL_LockSurface(surface);
+	
+		for(int i = 0; i<surface->w; i++)
+		{
+			for(int j = 0; j<surface->h; j++)
+			{
+			Uint8 r, v, b;
+			Uint32 pixel;
+			pixel=getpixel(surface,i,j);
+			SDL_GetRGB(pixel,surface->format,&r,&v,&b);
+			float m=0.2125*r+0.7154*v+0.0721*b;
+                        r=m;
+			v=m;
+			b=m;
+                        pixel=SDL_MapRGB(surface->format,r,v,b);
+			defPixel(surface,i,j,pixel);
+
+
+
+			}
+		}
+	
+
+SDL_UnlockSurface(surface);
+return surface;
+}
+
 void goToGrey(SDL_Surface * surface)
 {
 	SDL_LockSurface(surface);
