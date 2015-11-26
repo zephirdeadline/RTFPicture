@@ -23,8 +23,61 @@ int main (int argc, char *argv[])
 	  //deux argument:= 1er grey pour la fonction et le deuxième un nom d'image :appeler
         if((strcmp(argv[1],"grey"))==0)
         {
-          SDL_Surface *surface=IMG_Load(argv[2]);
-          goToGrey(surface);
+         /* SDL_Surface *surface=IMG_Load(argv[2]);
+          goToGrey(surface);*/
+	  example* arr;
+	      image *tab = malloc(797*sizeof(image));
+         arr=weightImage(tab, 797, 797);
+	  float tab1[4]={-972.0,-1.0,0.222619,24.0};
+	  float tab2[4]={3564.0,1.0,0.204066,24.0};
+	  float tab3[4]={-1165.5,-1.0,0.198428,21.0};
+	  float tab4[4]={1310.0,1.0,0.209290,20.0};
+	  float tab5[4]={751.5,1.0,0.199548,9.0};
+	  float tab6[4]={1190.0,1.0,0.204657,20.0};
+	  float tab7[4]={8061.5,1.0,0.178388,23.0};
+	  float tab8[4]={-504.0,-1.0,0.214318,16.0};
+	  float tab9[4]={-4092.0,-1.0,0.170897,24.0};
+	  float tab10[4]={-298.5,-1.0,0.178046,3.0};
+	  float tab11[4]={6309.0,1.0,0.144317,18.0};
+	  float tab12[4]={143.5,1.0,0.157750,7.0};
+	  float tab13[4]={4826.0,1.0,0.248784,38.0};
+	  float tab14[4]={-4212.0,-1.0,0.181252,24.0};
+	  float tab15[4]={-1092.0,-1.0,0.191624,24.0};
+	  float tab16[4]={8412.0,1.0,0.109095,24.0};
+          float tab17[4]={112.5,1.0,0.104319,3.0};
+	  float tab18[4]={-175.5,-1.0,0.166597,1.0};
+	  float tab19[4]={4109.0,1.0,0.140488,42.0};
+	  float tab20[4]={3173.0,1.0,0.158814,38.0};
+	  float tab21[4]={1914.0,1.0,0.133727,12.0};
+	  float tab22[4]={13.0,1.0,0.158362,2.0};
+	  float tab23[4]={262.5,1.0,0.149735,5.0};
+	  
+	  for(int z=0;z<797;z++)
+	  {float a=0.630079*evaluate(tab1,arr[z].feat[81095]);
+	  float b=0.692751*evaluate(tab2,arr[z].feat[103319]);
+	  float c=0.702541*evaluate(tab3,arr[z].feat[81556]);
+	  float d=0.672720*evaluate(tab4,arr[z].feat[105231]);
+	  float e=0.699813*evaluate(tab5,arr[z].feat[109008]);
+	  float f=0.685823*evaluate(tab6,arr[z].feat[105342]);
+	  float g=0.772684*evaluate(tab7,arr[z].feat[99628]);
+	  float h=0.654340*evaluate(tab8,arr[z].feat[85502]);
+	  float i=0.796683*evaluate(tab9,arr[z].feat[77819]);
+	  float j=0.770885*evaluate(tab10,arr[z].feat[72880]);
+	  float k=0.900025*evaluate(tab11,arr[z].feat[99926]);
+	  float l=0.843853*evaluate(tab12,arr[z].feat[110235]);
+	  float m=0.557756*evaluate(tab13,arr[z].feat[99462]);
+	  float n=0.756812*evaluate(tab14,arr[z].feat[77819]);
+          float o=0.726207*evaluate(tab15,arr[z].feat[77771]);
+	  float p=1.068905*evaluate(tab16,arr[z].feat[99467]);
+	  float q=1.084687*evaluate(tab17,arr[z].feat[110324]);
+	  float r=0.804995*evaluate(tab18,arr[z].feat[72632]);
+	  float s=0.915483*evaluate(tab19,arr[z].feat[95971]);
+	  float t=0.840918*evaluate(tab20,arr[z].feat[99757]);
+	  float u=0.943950*evaluate(tab21,arr[z].feat[106812]);
+	  float v=0.840947*evaluate(tab22,arr[z].feat[110893]);
+	  float w=0.881422*evaluate(tab23,arr[z].feat[108866]);
+
+	  printf("%f\n",a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+p+q+r+s+t+u+v+w);}
         }
    // 2 argument:= 1er integral pour la fonction et le deuxième un nom d'image:appeler
         if((strcmp(argv[1],"integral"))==0)
@@ -38,9 +91,9 @@ int main (int argc, char *argv[])
         if((strcmp(argv[1],"haar"))==0)
         {
           SDL_Surface *surface=IMG_Load(argv[2]);
-          queue q=haarr2(surface);
+          feature *q=haarr2(surface);
 	if(argc==4)
-	  {printf("Le caractéristique %d vaut %d\n",atoi(argv[3]),search(q,atoi(argv[3])).res);}
+	  {printf("Le caractéristique %d vaut %d\n",atoi(argv[3]),(q[atoi(argv[3])]).res);}
         }
 
 //2 argument 1er decision 2eme entier i: appeler
@@ -48,8 +101,9 @@ int main (int argc, char *argv[])
         {
           example* arr;
 	      image *tab = malloc(797*sizeof(image));
-         arr=weightImage(tab, 797, 797);	
-	      float *t=decision(arr,(atoi(argv[2])),797);
+         arr=weightImage(tab, 797, 797);
+	quickSort(arr,0,796,atoi(argv[2]));	
+	     float *t=decision(arr,(atoi(argv[2])),796);
 	
 	printf("%f|",t[0]);
 	printf("%f|",t[1]);
@@ -64,7 +118,7 @@ int main (int argc, char *argv[])
         example* arr;
 	    image *tab = malloc(797*sizeof(image));
 	    arr=weightImage(tab, 797, 797);	
-	    adaboost(arr,atoi(argv[2]),797);
+	    adaboost(arr,atoi(argv[2]),320);
       }
    // if(argc == 2)
    // {
@@ -209,11 +263,12 @@ example* weightImage(image tab[], int len, int nb)
 		
 return array;}
 
-queue haarr2(SDL_Surface *image)
+feature* haarr2(SDL_Surface *image)
 { 
    int nb=0;
    int nbtot=0;
-    queue q = q_new();
+    //queue q = q_new();
+    feature *tab=malloc(sizeof(feature)*162336);
     int **arr = Integral(image);
     int a,b,c,d,e,f;
     int S1, S2,S3,S4;
@@ -239,8 +294,9 @@ queue haarr2(SDL_Surface *image)
 				S1=(((a<0)||(b<0))?0:arr[a][b])-(((a<0)||(c<0))?0:arr[a][c])-(((d<0)||(b<0))?0:arr[d][b])+(((d<0)||(c<0))?0:arr[d][c]);
 				S2=(((a<0)||(e<0))?0:arr[a][e])-(((a<0)||(b<0))?0:arr[a][b])-(((d<0)||(e<0))?0:arr[d][e])+(((d<0)||(b<0))?0:arr[d][b]);
 				feat.res=S1-S2;
-				enqueue(q,feat);
+				//enqueue(q,feat);
 				nb++;
+				tab[nbtot]=feat;
 				nbtot++;
 				
 			}
@@ -274,8 +330,9 @@ queue haarr2(SDL_Surface *image)
 				S2=(((a<0)|(e<0))?0:arr[a][e])-(((a<0)|(b<0))?0:arr[a][b])-(((d<0)|(e<0))?0:arr[d][e])+(((d<0)|(b<0))?0:arr[d][b]);
 				S3 = (((a<0)|(f<0))?0:arr[a][f])-(((a<0)|(e<0))?0:arr[a][e])-(((d<0)|(f<0))?0:arr[d][f])+(((d<0)|(e<0))?0:arr[d][e]);
 				feat.res = S1-S2+S3;
-				enqueue(q,feat);
+				//enqueue(q,feat);
 				nb++;
+				tab[nbtot]=feat;
 				nbtot++;
 			}
 		}
@@ -305,8 +362,9 @@ queue haarr2(SDL_Surface *image)
   				S1=(((a<0)|(b<0))?0:arr[a][b])-(((a<0)|(c<0))?0:arr[a][c])-(((d<0)|(b<0))?0:arr[d][b])+(((d<0)|(c<0))?0:arr[d][c]);
                                 S2=(((e<0)|(b<0))?0:arr[e][b])-(((e<0)|(c<0))?0:arr[e][c])-(((a<0)|(b<0))?0:arr[a][b])+(((a<0)|(c<0))?0:arr[a][c]);
 				feat.res = S1-S2;
-				enqueue(q,feat);
+				//enqueue(q,feat);
 				nb++;
+				tab[nbtot]=feat;
 				nbtot++;
 			}
 		}
@@ -338,8 +396,9 @@ queue haarr2(SDL_Surface *image)
 				S2=(((e<0)|(b<0))?0:arr[e][b])-(((e<0)|(c<0))?0:arr[e][c])-(((a<0)|(b<0))?0:arr[a][b])+(((a<0)|(c<0))?0:arr[a][c]);
 				S3=(((f<0)|(b<0))?0:arr[f][b])-(((f<0)|(c<0))?0:arr[f][c])-(((e<0)|(b<0))?0:arr[e][b])+(((e<0)|(c<0))?0:arr[e][c]);
 				feat.res = S1-S2+S3;
-				enqueue(q,feat);
+				//enqueue(q,feat);
 				nb++;
+				tab[nbtot]=feat;
 				nbtot++;
 			}
 		}
@@ -372,7 +431,8 @@ queue haarr2(SDL_Surface *image)
 				S3=(((a<0)|(f<0))?0:arr[a][f])-(((a<0)|(b<0))?0:arr[a][b])-(((d<0)|(f<0))?0:arr[d][f])+(((d<0)|(b<0))?0:arr[d][b]);
 				S4=(((e<0)|(f<0))?0:arr[e][f])-(((e<0)|(b<0))?0:arr[e][b])-(((a<0)|(f<0))?0:arr[a][f])+(((a<0)|(b<0))?0:arr[a][b]);
 				feat.res = S1-S2-S3+S4;
-				enqueue(q,feat);
+				//enqueue(q,feat);
+				tab[nbtot]=feat;
 				nb++;
 				nbtot++;
 			}
@@ -381,7 +441,7 @@ queue haarr2(SDL_Surface *image)
     }
 	printf("Il y a %d caractéristiques de type 5\n", nb);
 	printf("Il y a au total %d caractéristiques dans une image de taille 24*24\n", nbtot);
-	return q;
+	return tab;
     
 }
 
@@ -537,15 +597,15 @@ static inline void swap(example* a, example* b)
 
 
 int partitionner(example *tableau, int p, int r,int k) {
-    int pivot = search(tableau[p].feat,k).res, i = p-1, j = r+1;
+    int pivot = (tableau[p].feat[k]).res, i = p-1, j = r+1;
     int temp;
     while (1) {
         do
             j--;
-        while (search(tableau[j].feat,k).res > pivot);
+        while ((tableau[j].feat[k]).res > pivot);
         do
             i++;
-        while (search(tableau[i].feat,k).res  < pivot);
+        while ((tableau[i].feat[k]).res  < pivot);
         if (i < j) {
             swap(tableau+i,tableau+j);
         }
@@ -562,18 +622,18 @@ void quickSort(example *tableau, int p, int r,int k) {
         quickSort(tableau, q+1, r,k);
     }
 }
-static inline
+/*static inline
 int is_sorted(example *begin, example *end,int j) {
   for (; begin < end - 1 && search((*begin).feat,j).res <= search((*(begin + 1)).feat,j).res; begin++) {}
   return begin == end - 1;
-}
+}*/
 
 
 float* decision(example* arr, int j, int n)
 {	
     
     float *ar = malloc(sizeof(float) * 5);
-    float treshold = (search(arr[0].feat,j).res)-1.0;
+    float treshold = ((arr[0].feat[j]).res)-1.0;
     float margin = 0.0;
     float error = 2.0;
     float toggle = 1.0;
@@ -585,7 +645,7 @@ float* decision(example* arr, int j, int n)
     {
       if(arr[i].label == 1)
       {		
-        if((search(arr[i].feat,j).res) > treshold)
+        if((((arr[i].feat)[j]).res) > treshold)
         {
           w1 = w1 + arr[i].weight;
         }
@@ -595,7 +655,7 @@ float* decision(example* arr, int j, int n)
     {
       if(arr[i].label == -1)
       {
-        if((search(arr[i].feat,j).res) > treshold)
+        if((((arr[i].feat)[j]).res) > treshold)
         {
           w2 = w2 + arr[i].weight;
         }
@@ -650,7 +710,7 @@ float* decision(example* arr, int j, int n)
           w3 = w3+arr[k].weight;
           w1 = w1-arr[k].weight;
         }
-        if((k==n) || ((search(arr[k].feat,j).res) != (search(arr[k+1].feat,j).res)))
+        if((k==n) || (((arr[k].feat[j]).res) != ((arr[k+1].feat[j]).res)))
         {
           break;
         }
@@ -661,13 +721,13 @@ float* decision(example* arr, int j, int n)
       }
       if(k == n)
       {
-        ntreshold = (search(arr[n-1].feat,j).res);
+        ntreshold = ((arr[n-1].feat[j]).res);
         nmargin = 0;
       }
       else
       {
-        ntreshold = ((search(arr[k].feat,j).res)+(search(arr[k+1].feat,j).res))/2.0;
-        nmargin = (search(arr[k+1].feat,j).res) - (search(arr[k].feat,j).res);
+        ntreshold = (((arr[k].feat[j]).res)+((arr[k+1].feat[j]).res))/2.0;
+        nmargin = ((arr[k+1].feat[j]).res) - ((arr[k].feat[j]).res);
       }
     }
     ar[0] = treshold;
@@ -740,7 +800,7 @@ void adaboost(example* arr, int T,int n)
 	   float *tab= Beststump(arr,162335,n);
 	    for(int j=0;j<n;j++)
 		{
-			if(evaluate(tab,search(arr[j].feat,tab[4]))!=arr[j].label)
+			if(evaluate(tab,(arr[j].feat[(int)tab[4]]))!=arr[j].label)
 	            error=error+arr[j].weight;
 		
 
@@ -762,7 +822,7 @@ void adaboost(example* arr, int T,int n)
 		    float coeff=(1.0/2.0)*(log((1.0-error)/error));
 		    for(int i=n-2;i>0;i--)
 		    {
-		            if(evaluate(tab,search(arr[i].feat,tab[4]))!=arr[i].label)
+		            if(evaluate(tab,(arr[i].feat[(int)tab[4]]))!=arr[i].label)
 			    {arr[i+1].weight=((arr[i].weight)/2.0)*(1.0/error);}
 				else
 			    {arr[i+1].weight=((arr[i].weight)/2.0)*(1.0/(1.0-error));}

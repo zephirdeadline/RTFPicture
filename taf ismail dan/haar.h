@@ -72,14 +72,14 @@ feature search(queue q,int n)
 }
 
 
-queue haarr2(SDL_Surface *image);
+feature* haarr2(SDL_Surface *image);
 int scaling(SDL_Surface *image, feature feat);
 
 typedef struct example example;
 struct example
 {
     int label;
-    queue feat;
+    feature* feat;
     float weight;
 };
 
