@@ -110,5 +110,5 @@ void detect(SDL_Surface *surf);
 int evaluate(float *tab,feature f);
 int evaluate2(float tab0, float tab1,int f);
 int eval2(feature *feat, SDL_Surface *surf);
-int attentionalCascade(feature *feat, SDL_Surface *surf,int i);
+int attentionalCascade(feature *feat, SDL_Surface *surf);
 #endif
