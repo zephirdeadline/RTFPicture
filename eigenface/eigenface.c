@@ -9,6 +9,7 @@ SDL_Surface* Diff(SDL_Surface* a, SDL_Surface* b);
 int main()
 {
   
+
   SDL_Surface** tab = malloc(4*sizeof(SDL_Surface));
   goToGrey(tab[0] = IMG_Load("moi2.JPG"));
   goToGrey(tab[1] = IMG_Load("moi1.JPG"));
@@ -17,7 +18,11 @@ int main()
   SDL_SaveBMP(tab[0], "testbefore.bmp");
   SDL_SaveBMP(SdlGoToGrey(Moyenne(tab, 4)), "test.bmp");
   
+<<<<<<< HEAD
   SDL_SaveBMP(SdlGoToGrey(Diff(IMG_Load("moi1.JPG"), Moyenne(tab, 4))), "testDiff.bmp");
+=======
+  SDL_SaveBMP(Diff(IMG_Load("lucas1.jpg"), IMG_Load("test.bmp")), "testDiff.bmp");
+>>>>>>> 482cdc528a61448e1047b686a6972f13d58a78f8
   return 0;
 }
 
@@ -32,10 +37,10 @@ SDL_Surface* Moyenne(SDL_Surface **tab, size_t size)
   SDL_Surface *tmp = SDL_CreateRGBSurface(SDL_HWSURFACE, (**tab).w, (**tab).h, 32, 0, 0, 0, 0);
   Uint32 res = 0;
   //printf("entree premiere boucle\n");
-  for(size_t j = 0; j < (**tab).w; j++)
+  for(int j = 0; j < (**tab).w; j++)
   {
     //printf("2eme boucle\n");
-    for(size_t k = 0; k < (**tab).h; k++)
+    for(int k = 0; k < (**tab).h; k++)
     {
       //printf("troisieme boucle\n");
       for(size_t i = 0; i < size; i++)
@@ -56,9 +61,9 @@ SDL_Surface* Moyenne(SDL_Surface **tab, size_t size)
 
 SDL_Surface* Diff(SDL_Surface* entry, SDL_Surface* moy)
 {
-  for(size_t i = 0; i < entry->w; i++)
+  for(int i = 0; i < entry->w; i++)
   {
-    for(size_t j = 0; j < entry->h; j ++)
+    for(int j = 0; j < entry->h; j ++)
     {
       //rajouter surement boucle for
       defPixel(entry, i, j, getpixel(entry, i, j) - getpixel(moy, i, j));

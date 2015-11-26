@@ -1,0 +1,227 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage {hyperref} % couleur du tableau
+\usepackage{xcolor}	  % couleur du tableau
+\usepackage{graphicx}
+\usepackage{multirow} %Utilisation pour fusion case tableau%
+\usepackage{colortbl} %COuleur Tableau%
+\usepackage{fancyhdr}
+\usepackage{times}
+\usepackage[final]{pdfpages} 
+\usepackage[left=4cm,right=3cm,top=2cm,bottom=2.5cm]{geometry} %FUCKING MARGE DE PETIT
+\usepackage{setspace}
+\setstretch{1,5} % FUCKING INTERLIGNE DE PETIT
+\author{Lucas}
+\sloppy
+
+\title{Rapport de soutenance}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{Info Sp\'e}
+\fancyhead[R]{EPITA 2019}
+\fancyfoot[L]{RTFPicture}
+
+ \pagestyle{fancy}
+
+\begin{document}
+
+%Page de garde%
+
+
+\begin{titlepage}
+
+
+\flushright \includegraphics[scale=.15]{EPITA_LOGO_DEF.png}
+\flushright Promo 2019
+
+
+%\includegraphics[scale=.15]{EPITA_LOGO_DEF.png}
+%\hfill
+%EPITA
+%Promo 2019
+
+\begin{center}
+
+%\advance\leftskip by 1.75cm
+\hspace{1.5cm}
+{
+\newline
+\newline
+\Huge Rapport de soutenance 1} 
+\newline
+\newline
+\newline
+%/ \includegraphics[scale=.35]{Pictures/logov2-0.jpg}
+\end{center}
+\begin{center}
+
+%\vspace{0.7cm}
+\end{center}
+\begin{Large}
+\begin{center}
+Ismail Keskas, Dan Azoulay, \\ Melvyn Petrochy, Lucas Dessert \end{center}
+\end{Large}
+\vspace{.5cm}
+\begin{center}
+\begin{large}
+Novembre 2015
+\end{large}
+\end{center}
+
+\noindent
+\newline
+\newline
+\textit{Nom du groupe :} Schr\"odinger \newline 
+\textit{Nom du projet :} RTFPicture\newline 
+\textit{Chef de projet :} Keskas Ismail (iso) \newline
+\end{titlepage}
+\newpage
+% \'e
+%% ICI sommaire %%
+\newpage
+\tableofcontents
+
+%% Debut Document%%
+\newpage
+\section*{Introduction}
+Ce document est le rapport de la premiere soutenance. Il a pour but de pr\'esenter une synthèse sur le travail fourni par l'\'equipe en charge du projet. Cette équipe est form\'ee de quatre \'etudiants en deuxième ann\'ee du cycle pr\'eparatoire de l'EPITA : Dan AZOULAY (azoul\_d), Melvyn PETROCHY (petro\_m), Ismail KESKAS (keska\_i) et Lucas DESSERT (desser\_l).
+
+ Notre projet est un logiciel de reconnaissance facial cod\'e en C99 sous Linux, qui sera capable de rechercher des personnes pr\'esentes sur une photo donn\'e, et qui à partir de cette photo donnera la liste des personnes pr\'esentes sur la photo qui auront \'et\'e pr\'ealablement enregistr\'e dans la base de donn\'ee du logiciel.
+
+
+
+\newpage
+
+
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+ \section{Pr\'esentation du groupe Schr\"odinger et r\'epartition des taches} 
+ 
+\subsection{Origine du groupe}
+Nous \'etions tous les quatre \'eleves dans la meme classe l'ann\'ee precedente en SUP. Nous avons d\'ecid\'e de former cette \'equipe pour mener a bien ce projet informatique d'envergure car n\'ecessitant une organisation solide entre les diff\'erents membres.
+
+\subsection{R\'epartition des taches}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|} \hline
+& Ismail & Dan & Melvyn & Lucas \\ \hline
+D\'etection d'un visage sur une photo & $\bigstar$ & $\bigstar$ & & \\ \hline
+Traitement de l'image & &  & $\bigstar$ & $\bigstar$ \\ \hline
+Base de donn\'ees & & & $\bigstar$ & $\bigstar$ \\ \hline
+\end{tabular}
+\end{center}
+
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{RTFPicture}
+\subsection{Fonctionnement}
+
+L'utilisation du logiciel est assez simple. Tout d'abord l'utilisateur devra remplir sa base de donn\'ees de visages et nommer les personnes ajout\'ees pour que le logiciel puisse ensuite traiter ces photos, en extraire les informations qui lui seront utiles pour une futur reconnaissance, et la sauvegarder dans sa base de donn\'ee.
+
+Une fois ceci fait, l'utilisateur peux ensuite ajouter une photo quelconque au logiciel qui l'analysera et lui dira quels sont les personnes qu'il a reconnue en croisant les visages d\'etect\'es sur la photo et sa base de donn\'ees. Le logiciel sera aussi capable de signaler les absents, et proposera a l'utilisateur d'ajouter les nouveaux visages d\'etect\'e (s'il y en à) dans sa base de donnée pour pouvoir les reconnaitre la prochaine fois.
+
+L'utilisateur pourra a tous moment g\'erer la base de donn\'ees, en ajoutant ou supprimant des personnes à sa guise (Il pourra bien sûr modifier le nom des personnes d\'ejà enregistr\'e s'il le souhaite).
+
+
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{D\'etection de visage}
+
+\subsection{Niveau de gris et pixels de l'image}
+Pour r\'ealiser la reconnaissance faciale, il fallait dans un premier temps traiter l'image en niveau de gris, ce qui permet de faciliter les calculs.
+Pour cela, nous avons écrit un algorithme parcourant une image pixel par pixel. Chaque pixel de couleur \'etant bas\'e sur trois variables rouge,vert et bleu. \\Pour obtenir l'image associée en niveau de gris, il suffit de faire la moyenne de ces trois variables puis de l'affecter à chacune de ces variables.
+En effet, le niveau de gris se caractérise par le fait que les variables rouges, vertes et bleues soient égales.
+Pour parcourir l'image pixel par pixel et modifier la couleur de ces derniers, nous avons utilis\'e des fonctions appartenant à la bibliothèque SDL telles que GetRGB pour récupérer les valeur rouge verte et bleu du pixel associ\'e, SDL MapRGB qui elle permet par exemple de modifier la couleur d'un pixel...
+Cette fonction prend en paramètre une SDL Surface et sauvegarde le r\'esultat dans une autre image grace a la fonction SaveBMP(surface, «nom de l'image»).
+
+\subsection{Les caract\'eristiques pseudo-Haar}
+Pour la d\'etection du visage, nous avons implement\'e la m\'ethode pr\'esente par les chercheurs Paul Viola et Michael Jones. Leur methode permet la detection d'objets pr\'esents sur une image num\'erique, en particulier pour d\'etecter la pr\'esence de visages sur une image. 
+\\La m\'ethode consiste a parcourir l'ensemble de l'image pixel par pixel tout en calculant un certain nombre de caract\'eristiques afin de d\'eceler ou non la pr\'esence d'un ou plusieurs visages sur celle-ci. Cependant, l'\'etude pixel par pixel peut s'av\'erer longue et lourde en terme de travail du processeur. C'est ainsi que l'utilisation des caracteristiques de Haar est introduite. Ces caracteristiques sont des zones rectangulaires chevauchent chacune de quelques a plusieurs centaines de pixels.  \\ \\ \\ \\\\\\ \includegraphics[scale=0.8]{haar.png}  \\ \\ 
+De plus, nous effectuons s\'eparement la somme des diff\'erents pixels pr\'esent dans la zone blanche du rectangle et ceux dans la zone noire. Nous calculons ensuite la diff\'erence des deux valeurs pr\'ecedement calcules. En effet, nous parcourons totalement une premiere fois l'image ayant une certaine taille, avec une petite fenetre au depart mesurant 24*24 pixels et nous y appliquons a l'int\'erieur de celle-ci les diff\'erentes formes de Haar. Nous obtenus un certain nombre de r\'esultats issus de nos diff\'erents calculs dans la fenetre 24*24 pixels, que nous stockons dans une file car facilitant l'insertion rapide de nouvelles donn\'ees. \\\ Ainsi, nous r\'eiterons le proc\'ed\'e a nouveau sur la meme image mais cette fois-ci en augmentant la taille de notre fenetre se d\'eplacant sur l'image et ce jusqu'a ce que la fenetre face la taille de l'image. 
+Au final, les caracteristiques seront calcul\'ees a toutes les positions de l'image permettant donc la d\'etection d'un ou plusieurs visages a n'importe quelle position sur l'image. En outre, nous avons utilis\'e cinq formes diff\'erentes de Haar afin d'augmenter la pr\'ecision des calculs et donc l'effacite de d\'etection des visages par notre logiciel.
+\newpage
+
+\subsection{Image integrale}
+Les images int\'egrales sont utilis\'ees pour acc\'elerer le calcul des caract\'eristiques pseudo-Haar. Il s'agit d'une image construite a partir de l'image d'origine dont chaque pixel de l'image est \'egal a la somme des pixels situes au-dessus et a gauche de celui-ci. \\ \\ \includegraphics[scale=0.3]{integral.png}
+\\\\ Ainsi, si l'on souhaite calculer la somme des pixels pr\'esent dans la zone gris\'ee, il suffit de r\'ecuperer le r\'esultat du calcul A+C-D-B, avec A,B,C et D des pixels contenant la somme de tous les pixels pr\'esent a gauche et au-dessus de ces derniers. Cette m\'ethode acc\'elere consid\'erablement le calcul de la somme des diff\'erents pixels pr\'esent dans une zone et permettre ensuite d'utiliser ces r\'esultats pour le calcul des caract\'eristiques de Haar.
+\newpage
+
+\subsection{Adaboost}
+Pour mettre en place l'algorithme d'apprentissage d'adaboost, il a fallu d'abord r\'ecup\'erer des exemples d'images positives et négatives au format 24x24. Par la suite, nous avons cr\'e\'e une structure Example qui est compos\'e de deux entiers correspondants au label (1 ou -1 selon positif ou n\'egatif) et au poids (initialement,1/2*(nbimagespositives),respectivement,1/2*(nbimagesnegative))
+et d'une file contenant toutes les caractéristiques de l'image associée.
+Ainsi,dans un premier algorithme, nous avons cr\'e\'e un tableau d'Example qui regroupe tous les poids, labels et caractéristiques des images fournies en exemples. \\
+Par la suite, nous avons mis en place un second algorithme qui se charge de comparer les iemes caract\'eristiques de n images d’entraînement.
+En effet, cet algorithme prend en parametre le tableau d'exemple cr\'e\'e pr\'ec\'edemment un entier j correspondant au caract\'eristique sur lequel est bas\'ee la comparaison et un entier n correspondant au nombre d'images d’entraînement.
+Avant d’ex\'ecuter cet algorithme pour un j donn\'e, il faut avant tout trier le tableau d'Example en ordre croissant en fonction du j ieme caract\'eristique de chaque image. Ensuite, en comparant le poids des images, le label et la valeur du caract\'eristique des diff\'erentes images, on arrive a d\'eterminer une regle appel\'ee aussi stump associ\'e au caract\'eristique j. Cette regle est compos\'ee d'un seuil, d'un label, d'une marge et d'un taux d'erreur. \newpage
+Chaque regle obtenue est consid\'er\'ee alors comme un classifier faible qui peut alors etre \'evalu\'ee.
+En effet ,notre troisieme fonction, la fonction d'\'evaluation va en fonction des diff\'erents \'el\'ements fournis par la regle du caract\'eristique retourner 1 lorsqu’elle suppose qu'il y a un visage et -1 dans le cas contraire.
+\newline Sachant qu'il y a 162336 caract\'eristiques de Haar dans une image de 24x24 cela veut dire qu'il y a un tres grand nombre de regle,et ce serait extremement long de toutes les évaluer.
+C'est pourquoi nous avons mit en place notre quatrième algorithme BestStump qui lui va permettre de choisir le meilleur classifieur, qui aura le plus petit taux d'erreur. Cet algorithme compare les diff\'erentes regles et conserve celle qui est la plus efficace.\\
+Enfin l’algorithme d'adaboost en lui meme, consiste  a rappeler la fonction BestTump un T fois et de mettre ensuite a jour les poids afin d'obtenir un classifieur fort compos\'e de la somme de ces T classifieurs faibles multiplier eux même par des coefficient. Nos classifieurs faibles sont écrits dans un ficher « StrongClassifieur.txt ». Une fois le classifieur fort obtenu il ne reste plus qu'a \'evaluer sur une image les diff\'erents classifieurs faibles qui composent le classifieur fort. Si le r\'esultat est n\'egatif on passe a la fenetre suivante sinon on stocke les coordonn\'ees de la fenetre associ\'ee.
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{Base de donn\'ee}
+
+\subsection{Sa structure}
+
+	Affin de gérer principalement l'ajout et la suppression des visages dans le logiciel, il nous fallait créer une base de donné adapté a nos besoin. Elle doit pouvoir enregistrer une nouvelle personne, c'est a dire son nom, une ou plusieurs photos, et stocker les résultats du pré-traitement de l'image pour seront utilisés pour la reconnaissance de la personne.
+
+Au départ nous avons réfléchis à comment créer cette base de donnée, et quoi utiliser pour y arriver. Nous avons étudier les possibilités de la bibliothèque SQL par exemple, qui est l'une des plus connus pour les bases de donnés, mais nous avons finalement choisi de n'utiliser aucune bibliothèque particulière et de coder nous même en C notre propre structure de donné. Nous n'étions pas convaincue par l'utilité de SQL pour notre projet et il nous a paru plus simple de créer notre propre type de donné affin de l'adapter parfaitement au besoin, et de la moduler plus facilement. De plus, aucuns d'entre nous n'avait des connaissances (même basique) dans la SQL.
+
+
+Nous avons codé notre base de données sous forme de liste dynamique chaînée, pour ne pas avoir de problème de taille maximum ou d'allocation mémoire trop petite.Chaque personne ajouté se retrouve être un élément d'une liste chaîné avec un pointeur sur l’élément suivant de la liste (s'il existe). Chaque élément de cette liste dispose de trois string, l'un pour le nom de la personne qui est enregistré dans cet élément, et les deux autres seront interprété comme des pointeurs sur un dossier, le premier pointeur pointera sur le dossier qui contiendra le ou les images de la personne, et le deuxième pointera sur le dossier dans le quel les résultats des traitements de l'image seront enregistré (dans des fichier .text). L'avantage de cette structure est qu'au lancement de du logiciel, un simple parcourt d'un fichier texte qui contient tous les noms enregistré permettra de reconstituer la liste dynamique représentant tous les visage que le logiciel est capable de reconnaître.
+\\\\
+\subsection{Au demarrage}
+
+Mais pour réussis à reconstituer cette liste chaîné nous avons nommé les trois string de chaque élément d'une façon spécifique. Par exemple, si on enregistre une personne sous le nom de Xavier, la string du nom sera évidement "Xavier", la string qui fait office de pointeur sur le dossier qui contient la ou les photos de Xavier contiendra "Xavier-Image" et la troisième string qui permettra de trouver le dossier ou sont enregistré les résultats du pré-traitement de l'image contiendra "Xavier-Character". De cette façon un simple fichier text qui contient tous les noms des personnes enregistré (un registre) permettra via une fonction que nous avons codé, de reconstituer la liste dynamique tel qu'elle était lors de la dernière activité du logiciel. 
+
+\subsection{L'ajout}
+
+Pour ajouter un élément a notre liste chaîné, nous avons codé une fonction qui prend en paramètre la liste chaîné ainsi que le nom de la personne a ajouter et qui vas donc créer un nouvel élément, remplir les trois string en fonction du nom de la personne, et l'ajouter à la tête de liste (car l'ajout en fin de liste impliquerai de parcourir toute la liste avant de procéder à l'ajout). 
+
+
+En plus de ça, la fonction d'ajout va écrire dans le fichier texte qui sert de registre, le nom de cette personne, affin qu'elle puisse être aussi ajouter dans la liste chaîné au prochain démarrage du logiciel.
+
+
+Nous avons aussi codé une fonction qui permet d'ajouter plusieurs élément d'un coup, elle prend en argument la liste dynamique ainsi qu'un tableau de string.
+
+\subsection{La suppression}
+
+La fonction de suppression elle, recherche l’élément à supprimer au sein de la liste dynamique, le supprime si elle le trouve et efface son nom dans le registre ainsi que les deux dossiers qui contiennent les photos et les résultats du pré-traitement de l'image.
+
+\subsection{La modification}
+
+Notre fonction de modification permet pour le moment de modifier le nom d'une personne déjà enregistré dans la base de donné (elle modifie l'élément dans la liste dynamique ainsi que le nom écrit dans le registre).
+
+
+\newpage
+%/ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\section{Les prochains objectifs}
+\subsection{Reconnaissance de visage}
+
+Pour la soutenance finale, nous prévoyons d'implémenter une interface graphique simple et intuitive qui permettra via de simple boutons, de visualiser les photos des personnes déjà enregistré, de supprimer ou d'ajouter des personnes dans la base de donnée, et bien évidemment de lancer une recherche de personne présente sur une photo.
+
+
+\newpage
+\subsection{L'interface graphique}
+
+
+\newpage
+\subsection{l'optimisation}
+
+
+\newpage
+
+\section{Conclusion}
+
+ \section{Annexes}
+
+
+
+\end{document}
