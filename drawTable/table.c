@@ -74,11 +74,41 @@ int main(int argc, char *argv[])
     //printf("ok\n");
     // texte = TTF_RenderText_Shaded(police, mod, couleurNoire, couleurNoire1);
     /*dessine le cercle*/////////////////  
-    printf("Table de %f modulo %d\n", table, mod);
-    for (int i = zerox-r; i<= zerox+r; i++)
-      for(int j = zeroy-r; j <= zeroy+r; j++)
-        if( (pow1(i-zerox) + pow1(j-zeroy) <= pow1(r+1)) && (pow1(i-zerox) + pow1(j-zeroy) >= pow1(r)) )
-          defPixel(Main, i, j, SDL_MapRGB(Main->format,rd,gd,bd));
+    //printf("Table de %f modulo %d\n", table, mod);
+    if(*type == 'm')
+      printf("Multip. %3f mod. %d\n", table, mod);
+    else if(*type == 'a')
+      printf("Addit. %3f mod. %d\n", table, mod);
+    else if(*type == 'p')
+      printf("Puiss. mod^(%3f/10) mod. %d\n", table, mod);
+
+
+    else if(*type == 's')
+      printf("Sqrt. sqrt(%3f*mod) mod. %d\n", table, mod);
+
+
+    else if(*type == 'e')
+      printf("EXP. exp(mod*%3f/100) mod. %d\n", table, mod);
+
+
+    else if(*type == 'f')
+      printf("Custom. %3f+10) mod. %d\n", table, mod);
+
+
+    else if(*type == 'n')
+      printf("Ln. ln(%3f*mod*10+1) mod. %d\n", table, mod);
+
+
+    else if(*type == 'c')
+      printf("Cos. cos(mod*cos(%3f)) mod. %d\n", table, mod);
+
+    else if(*type == 'i')
+      printf("Sin. mod*sin(%3f) mod. %d\n", table, mod);
+
+        for (int i = zerox-r; i<= zerox+r; i++)
+          for(int j = zeroy-r; j <= zeroy+r; j++)
+            if( (pow1(i-zerox) + pow1(j-zeroy) <= pow1(r+1)) && (pow1(i-zerox) + pow1(j-zeroy) >= pow1(r)) )
+              defPixel(Main, i, j, SDL_MapRGB(Main->format,rd,gd,bd));
 
 
     //float size;
@@ -126,7 +156,7 @@ void findEq(SDL_Surface *s, int zerox, int zeroy, int r, float t)
     else if(*type == 's')
       b= findVal((int)sqrt(i*t)%mod);
     else if(*type == 'e')
-      b= findVal((int)exp(i*t/10)%mod);
+      b= findVal((int)exp(i*t/100)%mod);
     else if(*type == 'f')
       b= findVal((int)(t+10)%mod);
     else if(*type == 'n')
